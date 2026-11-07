@@ -26,20 +26,9 @@ nav{position:fixed;bottom:0;left:0;right:0;background:#fffdfdF2;backdrop-filter:
 table{width:100%;border-collapse:collapse;font-size:12px}td,th{text-align:left;padding:9px 5px;border-bottom:1px solid var(--line)}th{color:var(--muted);font-weight:600}
 input[type=file]{font-size:12px;max-width:100%}
 .note{background:#fff5f7;color:#80616d;padding:12px;border-radius:13px;font-size:12px;line-height:1.5}
-.guidebtn{border:1px solid var(--line);background:#fff5f8;color:var(--rose);border-radius:20px;padding:6px 10px;font-size:11px;font-weight:750;margin:0 0 8px 6px}.guide-overlay{position:fixed;inset:0;background:#24182099;z-index:30;display:none;align-items:flex-end;justify-content:center;padding:12px}.guide-overlay.open{display:flex}.guide-panel{background:#fffafb;width:min(650px,100%);max-height:90vh;overflow:auto;border-radius:24px;padding:18px;box-shadow:0 15px 50px #24182044}.guide-visual{background:linear-gradient(135deg,#f8e5eb,#fff7f9);border-radius:18px;padding:14px;margin:12px 0;text-align:center}.guide-visual svg{width:100%;height:150px;max-width:340px}.guide-steps{padding-left:20px;font-size:13px;line-height:1.6}.guide-steps li{margin:7px 0}.guide-tip{background:#f7edf1;border-radius:13px;padding:12px;font-size:12px;line-height:1.5;margin:10px 0}.guide-actions{display:flex;gap:8px;flex-wrap:wrap}.guide-actions a{display:inline-block;text-decoration:none}.guide-close{border:0;background:#f7e8ed;color:var(--rose);border-radius:12px;padding:9px 12px;font-weight:750}
+.guidebtn{border:1px solid var(--line);background:#fff5f8;color:var(--rose);border-radius:20px;padding:6px 10px;font-size:11px;font-weight:750;margin:0 0 8px 6px}.guide-overlay{position:fixed;inset:0;background:#24182099;z-index:30;display:none;align-items:flex-end;justify-content:center;padding:12px}.guide-overlay.open{display:flex}.guide-panel{background:#fffafb;width:min(650px,100%);max-height:90vh;overflow:auto;border-radius:24px;padding:18px;box-shadow:0 15px 50px #24182044}.guide-visual{background:linear-gradient(135deg,#f8e5eb,#fff7f9);border-radius:18px;padding:12px;margin:12px 0;text-align:center}.guide-video-frame{width:100%;aspect-ratio:16/9;background:#241820;border-radius:14px;overflow:hidden}.guide-video-frame video{width:100%;height:100%;object-fit:contain}.guide-video-fallback{padding:22px;color:#80616d;font-size:13px;line-height:1.5}.guide-steps{padding-left:20px;font-size:13px;line-height:1.6}.guide-steps li{margin:7px 0}.guide-tip{background:#f7edf1;border-radius:13px;padding:12px;font-size:12px;line-height:1.5;margin:10px 0}.guide-actions{display:flex;gap:8px;flex-wrap:wrap}.guide-actions a{display:inline-block;text-decoration:none}.guide-close{border:0;background:#f7e8ed;color:var(--rose);border-radius:12px;padding:9px 12px;font-weight:750}
 footer{text-align:center;color:#b19da5;font-size:10px;padding:16px}
 @media(min-width:600px){main{padding:24px}.grid{grid-template-columns:repeat(4,1fr)}}
-.real-guide{margin:0 auto 10px;max-width:680px}.real-guide img{display:block;width:100%;height:auto;border-radius:16px;border:1px solid var(--line)}.real-guide-caption{display:flex;justify-content:space-around;gap:8px;margin-top:8px;color:var(--rose);font-weight:800;font-size:13px}.real-guide .small{text-align:center;margin:6px 0 0}
-
-.real-guide{display:grid;gap:10px;text-align:left}
-.real-guide-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.real-guide-card{background:#fff;border:1px solid var(--line);border-radius:15px;padding:7px;min-width:0}
-.real-guide-card img{display:block;width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:10px;background:#f7e8ed}
-.real-guide-card b{display:block;text-align:center;font-size:12px;color:var(--rose);padding:7px 2px 3px}
-.real-guide-single img{width:100%;max-height:390px;object-fit:contain;border-radius:14px;background:#fff}
-.real-guide-missing{border:1px dashed #d9a9b8;border-radius:14px;padding:16px;text-align:center;background:#fff;font-size:13px;line-height:1.5;color:var(--muted)}
-.real-guide-missing strong{display:block;color:var(--rose);font-size:14px;margin-bottom:5px}
-@media(max-width:390px){.real-guide-grid{gap:6px}.real-guide-card{padding:5px}.real-guide-card b{font-size:11px}}
 </style>
 </head>
 <body>
@@ -83,7 +72,7 @@ footer{text-align:center;color:#b19da5;font-size:10px;padding:16px}
   <div class="note">Importante: si borras los datos del navegador o cambias de móvil, puedes perder tus registros. Exporta una copia de vez en cuando. Las fotos ocupan espacio en el dispositivo.</div>
 </section>
 <footer>MY GYM · HECHA PARA TI 💗</footer>
-<div class="guide-overlay" id="guideOverlay" role="dialog" aria-modal="true" aria-labelledby="guideTitle"><div class="guide-panel"><div class="between"><div><div class="small muted">GUÍA DEL EJERCICIO</div><h2 id="guideTitle" class="hello" style="font-size:21px;margin:4px 0"></h2></div><button class="guide-close" id="closeGuide">Cerrar ✕</button></div><div class="guide-visual"><div id="guideIllustration"></div><div class="small muted">Ilustración orientativa · compara la posición inicial y el movimiento</div></div><div id="guideDescription"></div><div class="guide-actions"><a class="btn" id="guideVideo" target="_blank" rel="noopener">▶ Ver vídeos del ejercicio</a><button class="btn secondary" id="guideDone">Entendido</button></div></div></div>
+<div class="guide-overlay" id="guideOverlay" role="dialog" aria-modal="true" aria-labelledby="guideTitle"><div class="guide-panel"><div class="between"><div><div class="small muted">GUÍA DEL EJERCICIO</div><h2 id="guideTitle" class="hello" style="font-size:21px;margin:4px 0"></h2></div><button class="guide-close" id="closeGuide">Cerrar ✕</button></div><div class="guide-visual"><div class="between" style="margin-bottom:8px"><b style="font-size:13px">Demostración real</b><span class="small muted">Vídeo de técnica</span></div><div class="guide-video-frame" id="guideVideoFrame"><div class="guide-video-fallback">Cargando demostración del ejercicio…</div></div><div class="small muted" style="margin-top:8px">La demostración muestra el movimiento completo para que puedas ver la posición inicial y final.</div></div><div id="guideDescription"></div><div class="guide-actions"><a class="btn" id="guideVideo" target="_blank" rel="noopener">▶ Abrir más demostraciones</a><button class="btn secondary" id="guideDone">Entendido</button></div></div></div>
 </main>
 <nav><div class="navinner">
 <button class="navbtn active" data-view="home"><span>⌂</span>Inicio</button>
@@ -94,14 +83,20 @@ footer{text-align:center;color:#b19da5;font-size:10px;padding:16px}
 </div>
 <script>
 const defaultDays=[
- {id:"mon",name:"Lunes",focus:"Piernas",icon:"🦵",exercises:["Prensa de piernas","Sentadilla","Extensión de cuádriceps","Curl femoral","Abductores"]},
- {id:"tue",name:"Martes",focus:"Espalda y bíceps",icon:"💪",exercises:["Jalón al pecho","Remo sentado","Remo unilateral","Curl de bíceps","Curl martillo"]},
- {id:"wed",name:"Miércoles",focus:"Glúteos",icon:"🍑",exercises:["Hip thrust","Peso muerto rumano","Patada de glúteo","Abducción de cadera","Puente de glúteos"]},
- {id:"thu",name:"Jueves",focus:"Pecho y tríceps",icon:"🏋️",exercises:["Press de pecho","Aperturas","Press de hombros","Extensión de tríceps","Jalón de tríceps"]},
- {id:"fri",name:"Viernes",focus:"Cuerpo completo",icon:"✨",exercises:["Prensa de piernas","Jalón al pecho","Hip thrust","Press de pecho","Plancha"]}
+ {id:"mon",name:"Lunes",focus:"Piernas",icon:"🦵",exercises:["Prensa de piernas","Sentadilla","Extensión de cuádriceps","Curl femoral","Hip Thrust"]},
+ {id:"tue",name:"Martes",focus:"Espalda y bíceps",icon:"💪",exercises:["Jalón al pecho","Remo sentado","Remo con mancuerna","Curl de bíceps con barra","Curl de bíceps alterno"]},
+ {id:"wed",name:"Miércoles",focus:"Glúteos",icon:"🍑",exercises:["Hip Thrust","Peso muerto rumano","Patada de glúteo","Abducción de cadera","Pull through"]},
+ {id:"thu",name:"Jueves",focus:"Pecho y tríceps",icon:"🏋️",exercises:["Press de banca","Press inclinado con mancuernas","Aperturas en máquina","Extensión de tríceps en polea","Fondos en máquina"]},
+ {id:"fri",name:"Viernes",focus:"Full body",icon:"✨",exercises:["Sentadilla goblet","Peso muerto con mancuernas","Remo en TRX","Press militar","Plancha"]}
 ];
 const KEY="mygym_v1";
 let data=load(), currentDay=null, session=[];
+/* Actualiza solo la planificación de 5 días; conserva entrenamientos, pesos, fotos y nombre. */
+if(localStorage.getItem("mygym_routine_v2")!=="ok"){
+ data.days=defaultDays.map(d=>({...d,exercises:[...d.exercises]}));
+ localStorage.setItem("mygym_routine_v2","ok");
+ save();
+}
 function load(){try{return JSON.parse(localStorage.getItem(KEY))||{days:defaultDays,logs:[],weights:[],photos:[],userName:""}}catch(e){return {days:defaultDays,logs:[],weights:[],photos:[],userName:""}}}
 function save(){localStorage.setItem(KEY,JSON.stringify(data))}
 function dateKey(d=new Date()){return d.toISOString().slice(0,10)}
@@ -135,40 +130,75 @@ const exerciseGuides={
 "Jalón de tríceps":{muscles:"Tríceps",steps:["Colócate frente a la polea alta y sujeta la cuerda o barra.","Mantén los codos pegados al cuerpo y empuja el agarre hacia abajo.","Regresa lentamente hasta que los antebrazos queden cerca de la horizontal."],tip:"Los hombros y los codos deben permanecer bastante quietos."},
 "Plancha":{muscles:"Abdomen y estabilidad del tronco",steps:["Apoya antebrazos y puntas de los pies, con codos debajo de los hombros.","Forma una línea recta desde la cabeza hasta los talones.","Aprieta abdomen y glúteos y respira con normalidad mientras mantienes la posición."],tip:"Si la cadera se hunde o sube demasiado, apoya las rodillas y mantén una versión más sencilla."}
 };
-const exercisePhotoFiles={
- "Prensa de piernas":"prensa-piernas",
- "Sentadilla":"sentadilla",
- "Extensión de cuádriceps":"extension-cuadriceps",
- "Curl femoral":"curl-femoral",
- "Abductores":"abductores",
- "Jalón al pecho":"jalon-pecho",
- "Remo sentado":"remo-sentado",
- "Remo unilateral":"remo-unilateral",
- "Curl de bíceps":"curl-biceps",
- "Curl martillo":"curl-martillo",
- "Hip thrust":"hip-thrust",
- "Peso muerto rumano":"peso-muerto-rumano",
- "Patada de glúteo":"patada-gluteo",
- "Abducción de cadera":"abduccion-cadera",
- "Puente de glúteos":"puente-gluteos",
- "Press de pecho":"press-pecho",
- "Aperturas":"aperturas",
- "Press de hombros":"press-hombros",
- "Extensión de tríceps":"extension-triceps",
- "Jalón de tríceps":"jalon-triceps",
- "Plancha":"plancha"
-};
-function guideIllustration(name){
- const slug=exercisePhotoFiles[name];
- if(!slug) return `<div class="real-guide-missing"><strong>Guía visual no disponible</strong>Consulta el vídeo para ver la ejecución de este ejercicio.</div>`;
- if(name==="Extensión de cuádriceps"){
-  return `<div class="real-guide real-guide-single"><img src="./assets/extension-cuadriceps.jpg" alt="Fotografía demostrativa de extensión de cuádriceps"><div class="real-guide-grid"><div class="real-guide-card"><b>① Posición inicial</b></div><div class="real-guide-card"><b>② Extensión controlada</b></div></div></div>`;
- }
- const first=`./assets/${slug}-1.jpg`, second=`./assets/${slug}-2.jpg`;
- return `<div class="real-guide"><div class="real-guide-grid"><div class="real-guide-card"><img src="${first}" alt="${name}: posición inicial" onerror="this.parentElement.innerHTML='<div class=&quot;real-guide-missing&quot;>Fotografía pendiente de añadir</div>'"><b>① Posición inicial</b></div><div class="real-guide-card"><img src="${second}" alt="${name}: movimiento" onerror="this.parentElement.innerHTML='<div class=&quot;real-guide-missing&quot;>Fotografía pendiente de añadir</div>'"><b>② Movimiento</b></div></div></div>`;
-}
 
-function openGuide(name){const g=exerciseGuides[name]||{muscles:"Músculos según la variante",steps:["Colócate de forma estable y ajusta la máquina o el material.","Realiza el movimiento lentamente, sin rebotes y con un recorrido cómodo.","Vuelve a la posición inicial controlando el peso."],tip:"Empieza con poco peso y pide ayuda al personal del gimnasio si no tienes clara la colocación."};document.getElementById("guideTitle").textContent=name;document.getElementById("guideIllustration").innerHTML=guideIllustration(name);document.getElementById("guideDescription").innerHTML=`<p class="small muted"><b>Trabaja:</b> ${esc(g.muscles)}</p><b>Cómo hacerlo</b><ol class="guide-steps">${g.steps.map(x=>`<li>${esc(x)}</li>`).join("")}</ol><div class="guide-tip"><b>💡 Consejo:</b> ${esc(g.tip)}</div>`;document.getElementById("guideVideo").href="https://www.youtube.com/results?search_query="+encodeURIComponent(name+" técnica correcta gimnasio demostración");document.getElementById("guideOverlay").classList.add("open")}
+let exerciseDBPromise=null;
+async function getExerciseDB(){
+ if(exerciseDBPromise) return exerciseDBPromise;
+ exerciseDBPromise=(async()=>{
+   const cached=localStorage.getItem("mygym_exercise_db_v1");
+   if(cached){try{return JSON.parse(cached)}catch(e){}}
+   const response=await fetch("https://exercise-database.zenithfits.com/api/v1/exercises?limit=317");
+   if(!response.ok) throw new Error("No se pudo cargar la biblioteca");
+   const payload=await response.json();
+   const list=payload.data||[];
+   try{localStorage.setItem("mygym_exercise_db_v1",JSON.stringify(list))}catch(e){}
+   return list;
+ })();
+ return exerciseDBPromise;
+}
+const exerciseAliases={
+ "Prensa de piernas":["leg press","close feet leg press"],
+ "Sentadilla":["barbell back squat","bodyweight squat","squat"],
+ "Extensión de cuádriceps":["leg extension","seated leg extension"],
+ "Curl femoral":["leg curl","lying leg curl","seated leg curl"],
+ "Hip Thrust":["hip thrust"],
+ "Jalón al pecho":["lat pulldown","cable pulldown"],
+ "Remo sentado":["seated row","cable seated row"],
+ "Remo con mancuerna":["dumbbell bent-over row","one arm dumbbell row"],
+ "Curl de bíceps con barra":["barbell curl"],
+ "Curl de bíceps alterno":["dumbbell biceps curl","alternating dumbbell curl"],
+ "Peso muerto rumano":["romanian deadlift","dumbbell romanian deadlift"],
+ "Patada de glúteo":["cable kickback","glute kickback"],
+ "Abducción de cadera":["hip abduction","machine hip abduction"],
+ "Pull through":["cable pull through","band pull through"],
+ "Press de banca":["barbell bench press"],
+ "Press inclinado con mancuernas":["dumbbell incline bench press","incline dumbbell press"],
+ "Aperturas en máquina":["pec deck","machine chest fly"],
+ "Extensión de tríceps en polea":["cable triceps pushdown","triceps pushdown"],
+ "Fondos en máquina":["assisted dip","chest dip","machine dip"],
+ "Sentadilla goblet":["dumbbell goblet squat","goblet squat"],
+ "Peso muerto con mancuernas":["dumbbell deadlift"],
+ "Remo en TRX":["inverted row","suspension row"],
+ "Press militar":["dumbbell shoulder press","overhead press"],
+ "Plancha":["plank"]
+};
+function norm(s){return String(s||"").toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"").replace(/[^a-z0-9]+/g," ").trim()}
+function matchExercise(list,name){
+ const aliases=(exerciseAliases[name]||[name]).map(norm);
+ return list.find(x=>aliases.some(a=>norm(x.name)===a)) ||
+        list.find(x=>aliases.some(a=>norm(x.name).includes(a)||a.includes(norm(x.name))));
+}
+async function openGuide(name){
+ const g=exerciseGuides[name]||{muscles:"Músculos principales según la variante",steps:["Colócate de forma estable y ajusta el material.","Realiza el movimiento de forma controlada, sin rebotes.","Vuelve lentamente a la posición inicial."],tip:"Empieza con una carga que controles y evita cualquier movimiento doloroso."};
+ document.getElementById("guideTitle").textContent=name;
+ document.getElementById("guideDescription").innerHTML=`<p class="small muted"><b>Trabaja:</b> ${esc(g.muscles)}</p><b>Cómo hacerlo</b><ol class="guide-steps">${g.steps.map(x=>`<li>${esc(x)}</li>`).join("")}</ol><div class="guide-tip"><b>💡 Consejo:</b> ${esc(g.tip)}</div>`;
+ document.getElementById("guideVideo").href="https://www.youtube.com/results?search_query="+encodeURIComponent(name+" técnica correcta demostración mujer gimnasio");
+ document.getElementById("guideVideoFrame").innerHTML='<div class="guide-video-fallback">Buscando una demostración real del movimiento…</div>';
+ document.getElementById("guideOverlay").classList.add("open");
+ try{
+   const list=await getExerciseDB();
+   const item=matchExercise(list,name);
+   const video=item?.videos?.female||item?.videos?.male;
+   const poster=item?.thumbnails?.female||item?.thumbnails?.male;
+   if(video){
+     document.getElementById("guideVideoFrame").innerHTML=`<video controls playsinline preload="metadata" ${poster?`poster="${poster}"`:''}><source src="${video}" type="video/mp4">Tu navegador no puede reproducir este vídeo.</video>`;
+   }else{
+     document.getElementById("guideVideoFrame").innerHTML='<div class="guide-video-fallback">No hemos encontrado un vídeo exacto en la biblioteca. Usa el botón para ver demostraciones del mismo ejercicio.</div>';
+   }
+ }catch(e){
+   document.getElementById("guideVideoFrame").innerHTML='<div class="guide-video-fallback">No se ha podido cargar la biblioteca en este momento. Puedes abrir demostraciones del ejercicio con el botón inferior.</div>';
+ }
+}
 document.getElementById("closeGuide").onclick=()=>document.getElementById("guideOverlay").classList.remove("open");document.getElementById("guideDone").onclick=()=>document.getElementById("guideOverlay").classList.remove("open");document.getElementById("guideOverlay").onclick=e=>{if(e.target.id==="guideOverlay")e.currentTarget.classList.remove("open")};
 function renderSession(){const done=session.filter(e=>e.done).length,pct=session.length?Math.round(done/session.length*100):0;document.getElementById("sessionProgress").textContent=pct+"%";document.getElementById("sessionBar").style.width=pct+"%";document.getElementById("exerciseList").innerHTML=session.length?session.map((e,i)=>`<div class="exercise"><div class="between"><div style="flex:1"><h3 style="display:inline">${i+1}. ${esc(e.name)}</h3><button class="guidebtn" data-guide="${i}">▶ Cómo se hace</button></div><input class="check" type="checkbox" data-done="${i}" ${e.done?"checked":""} aria-label="Completado"></div><div class="fields"><label>Series<input type="number" min="1" data-field="sets" data-i="${i}" value="${e.sets}"></label><label>Repeticiones<input type="number" min="1" data-field="reps" data-i="${i}" value="${e.reps}"></label><label>Peso (kg)<input type="number" min="0" step=".5" data-field="weight" data-i="${i}" value="${e.weight}" placeholder="—"></label></div></div>`).join(""):`<div class="empty">Añade tu primer ejercicio.</div>`;
 document.querySelectorAll("[data-guide]").forEach(x=>x.onclick=()=>openGuide(session[+x.dataset.guide].name));document.querySelectorAll("[data-done]").forEach(x=>x.onchange=()=>{session[+x.dataset.done].done=x.checked;renderSession()});document.querySelectorAll("[data-field]").forEach(x=>x.onchange=()=>session[+x.dataset.i][x.dataset.field]=x.value)}
