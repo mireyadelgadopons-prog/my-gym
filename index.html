@@ -126,22 +126,104 @@ const exerciseGuides={
 };
 function guideIllustration(name){
  const n=name.toLowerCase();
- let kind='squat', label='Flexiona y vuelve con control';
- if(/peso muerto|rumano/.test(n)){kind='hinge';label='Lleva la cadera atrás y vuelve a erguirte'}
- else if(/plancha/.test(n)){kind='plank';label='Mantén el cuerpo alineado'}
- else if(/jalón|remo|curl de bíceps|curl martillo|tríceps/.test(n)){kind='pull';label='Acerca el agarre sin balancear el cuerpo'}
- else if(/press|aperturas|extensión de tríceps/.test(n)){kind='push';label='Empuja o abre sin arquear la espalda'}
- else if(/abduct|patada de glúteo/.test(n)){kind='side';label='Mueve la pierna sin girar la pelvis'}
- else if(/hip thrust|puente/.test(n)){kind='bridge';label='Eleva la cadera apretando los glúteos'}
- const person=(x,pose)=>{
-  if(kind==='plank') return `<g transform="translate(${x},0)" stroke="#9f5b74" stroke-width="9" stroke-linecap="round" fill="none"><circle cx="25" cy="78" r="10" fill="#bd8195" stroke="none"/><path d="M36 82 L92 88 L142 112 M60 86 L45 119 M82 87 L110 119"/><path d="M92 88 L137 83" stroke="#d9a8b8" stroke-width="3"/></g>`;
-  if(kind==='hinge') return `<g transform="translate(${x},0)" stroke="#9f5b74" stroke-width="9" stroke-linecap="round" fill="none"><circle cx="78" cy="${pose?31:24}" r="11" fill="#bd8195" stroke="none"/><path d="M${pose?82:78} ${pose?44:37} L${pose?62:78} ${pose?83:82} L${pose?40:65} 126 M${pose?62:78} ${pose?83:82} L${pose?82:65} 126 M${pose?72:78} ${pose?56:51} L${pose?42:54} ${pose?80:73} M${pose?72:78} ${pose?56:51} L${pose?104:102} ${pose?78:70}"/></g>`;
-  if(kind==='bridge') return `<g transform="translate(${x},0)" stroke="#9f5b74" stroke-width="9" stroke-linecap="round" fill="none"><circle cx="24" cy="${pose?78:91}" r="10" fill="#bd8195" stroke="none"/><path d="M35 ${pose?82:95} L${pose?82:78} ${pose?72:101} L${pose?119:112} 124 M${pose?82:78} ${pose?72:101} L${pose?145:140} 124 M${pose?66:60} ${pose?77:97} L${pose?55:54} 120"/></g>`;
-  if(kind==='side') return `<g transform="translate(${x},0)" stroke="#9f5b74" stroke-width="9" stroke-linecap="round" fill="none"><circle cx="75" cy="25" r="11" fill="#bd8195" stroke="none"/><path d="M75 38 L75 82 M75 51 L48 70 M75 51 L101 70 M75 82 L${pose?35:60} 124 M75 82 L${pose?125:94} 124"/></g>`;
-  if(kind==='pull'||kind==='push') return `<g transform="translate(${x},0)" stroke="#9f5b74" stroke-width="9" stroke-linecap="round" fill="none"><circle cx="75" cy="24" r="11" fill="#bd8195" stroke="none"/><path d="M75 37 L75 83 M75 49 L${pose?(kind==='pull'?54:35):45} ${pose?72:52} M75 49 L${pose?(kind==='pull'?96:115):105} ${pose?72:52} M75 83 L55 126 M75 83 L96 126"/><path d="M${kind==='pull'?45:30} 50 H${kind==='pull'?105:120}" stroke="#d9a8b8" stroke-width="4"/></g>`;
-  return `<g transform="translate(${x},0)" stroke="#9f5b74" stroke-width="9" stroke-linecap="round" fill="none"><circle cx="75" cy="24" r="11" fill="#bd8195" stroke="none"/><path d="M75 37 L75 ${pose?77:83} M75 49 L47 ${pose?70:54} M75 49 L103 ${pose?70:54} M75 ${pose?77:83} L${pose?48:56} 124 M75 ${pose?77:83} L${pose?102:94} 124"/></g>`;
- };
- return `<svg viewBox="0 0 340 150" role="img" aria-label="Dos posiciones ilustradas del ejercicio ${esc(name)}" style="width:100%;height:150px;max-width:340px"><text x="85" y="14" text-anchor="middle" font-size="10" fill="#8b7d83">INICIO</text><text x="255" y="14" text-anchor="middle" font-size="10" fill="#8b7d83">MOVIMIENTO</text>${person(8,0)}${person(178,1)}<path d="M145 76 H185 M178 69 L185 76 L178 83" stroke="#bd8195" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/><text x="170" y="145" text-anchor="middle" font-size="9" fill="#8b7d83">${label}</text></svg>`;
+ const rose="#a85f78", dark="#49343d", skin="#d99aaa", pale="#f2d7e0", metal="#8e929b", grey="#c9cbd0";
+ const arrow='<path d="M0 0 L18 0 M11 -7 L18 0 L11 7" fill="none" stroke="'+rose+'" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>';
+ const head=(x,y)=>`<circle cx="${x}" cy="${y}" r="9" fill="${skin}" stroke="${dark}" stroke-width="2"/>`;
+ const limb=(d,w=8)=>`<path d="${d}" fill="none" stroke="${dark}" stroke-width="${w}" stroke-linecap="round" stroke-linejoin="round"/>`;
+ const machine=(body)=>`<g>${body}</g>`;
+ let title="Movimiento controlado", left="", right="", muscles="";
+ if(/prensa/.test(n)){
+  muscles="Cuádriceps y glúteos";
+  const press=(extended)=>`<g>
+   <path d="M18 128H145 M32 125L40 50H112L130 125" stroke="${metal}" stroke-width="5" fill="none"/>
+   <path d="M48 53L112 53" stroke="${metal}" stroke-width="5"/>
+   <path d="M112 53L132 35" stroke="${metal}" stroke-width="5"/>
+   <path d="M117 27L145 15L154 38L126 50Z" fill="${grey}" stroke="${metal}" stroke-width="3"/>
+   <path d="M34 111L34 126 M145 15L145 5" stroke="${metal}" stroke-width="4"/>
+   <path d="M48 99L73 99L86 112" stroke="${metal}" stroke-width="4" fill="none"/>
+   ${head(53,66)}
+   ${limb(extended?"M61 72 L78 85 L103 63":"M61 72 L78 88 L89 109",10)}
+   ${limb(extended?"M103 63 L123 47":"M89 109 L121 47",9)}
+   ${limb("M78 85 L70 100",6)}
+   <path d="${extended?"M123 47L151 35":"M121 47L151 35"}" stroke="${rose}" stroke-width="3" fill="none"/>
+   <circle cx="${extended?125:91}" cy="${extended?63:109}" r="5" fill="${rose}"/>
+  </g>`;
+  left=press(false); right=press(true); title="Empuja la plataforma y vuelve sin bloquear las rodillas";
+ } else if(/sentadilla/.test(n)){
+  muscles="Cuádriceps y glúteos";
+  const squat=(down)=>`<g>${head(76,down?35:24)}
+   ${limb(down?"M76 45 L78 76":"M76 35 L76 78",11)}
+   ${limb(down?"M76 53 L48 65 L35 53":"M76 48 L48 55 L34 42",7)}
+   ${limb(down?"M76 53 L104 65 L117 53":"M76 48 L104 55 L118 42",7)}
+   ${limb(down?"M78 76 L51 91 L37 119":"M76 78 L58 101 L48 127",10)}
+   ${limb(down?"M78 76 L103 91 L119 119":"M76 78 L94 101 L107 127",10)}
+   <path d="M24 129H132" stroke="${metal}" stroke-width="3"/>
+  </g>`;
+  left=squat(false); right=squat(true); title="Lleva la cadera atrás y baja manteniendo el pecho erguido";
+ } else if(/extensión de cuádriceps/.test(n)){
+  muscles="Cuádriceps";
+  const leg=(raised)=>`<g><path d="M18 112H135 M35 110V65H99V110" stroke="${metal}" stroke-width="5" fill="none"/><path d="M42 65L42 35H78" stroke="${metal}" stroke-width="5" fill="none"/>
+   ${head(48,42)}${limb("M55 48L78 72L91 82",10)}
+   ${limb(raised?"M91 82L111 45L127 45":"M91 82L106 107L127 107",9)}
+   <circle cx="91" cy="82" r="6" fill="${rose}"/><rect x="${raised?119:119}" y="${raised?39:101}" width="17" height="13" rx="5" fill="${grey}" stroke="${metal}" stroke-width="2"/>
+   <path d="M23 113H136" stroke="${metal}" stroke-width="4"/></g>`;
+  left=leg(false);right=leg(true);title="Extiende las rodillas sin impulso y baja despacio";
+ } else if(/curl femoral/.test(n)){
+  muscles="Isquiotibiales (parte posterior del muslo)";
+  const leg=(bend)=>`<g><path d="M16 109H140 M29 107V55H125V107" stroke="${metal}" stroke-width="5" fill="none"/><path d="M40 56L40 31H88" stroke="${metal}" stroke-width="5" fill="none"/>
+   ${head(49,39)}${limb("M57 46L85 67L103 76",10)}
+   ${limb(bend?"M103 76L119 96L103 115":"M103 76L127 109",9)}
+   <circle cx="103" cy="76" r="6" fill="${rose}"/><rect x="${bend?96:120}" y="${bend?109:101}" width="22" height="12" rx="5" fill="${grey}" stroke="${metal}" stroke-width="2"/>
+   </g>`;
+  left=leg(false);right=leg(true);title="Flexiona las rodillas llevando los talones hacia los glúteos";
+ } else if(/hip thrust|puente/.test(n)){
+  muscles="Glúteos e isquiotibiales";
+  const bridge=(up)=>`<g><path d="M16 95H48V125H16Z" fill="${grey}" stroke="${metal}" stroke-width="3"/><path d="M16 125H145" stroke="${metal}" stroke-width="3"/>
+   ${head(54,up?65:84)}${limb(up?"M64 69L91 70L113 91":"M64 88L89 105L113 112",11)}
+   ${limb("M113 91L132 123",9)}${limb(up?"M91 70L77 105":"M89 105L77 125",9)}
+   <circle cx="${up?91:89}" cy="${up?70:105}" r="6" fill="${rose}"/>
+   <path d="M50 125H140" stroke="${metal}" stroke-width="3"/></g>`;
+  left=bridge(false);right=bridge(true);title="Eleva la cadera hasta alinear hombros, cadera y rodillas";
+ } else if(/jalón al pecho/.test(n)){
+  muscles="Espalda (dorsales) y bíceps";
+  const pull=(down)=>`<g><path d="M24 128V18H129V128 M24 18H129" stroke="${metal}" stroke-width="5" fill="none"/><path d="M76 18V${down?43:31}" stroke="${metal}" stroke-width="3"/><path d="M47 ${down?43:31}H105" stroke="${rose}" stroke-width="5" stroke-linecap="round"/>
+   ${head(76,down?58:51)}${limb("M76 68L76 99",10)}${limb(down?"M76 75L50 53L47 43":"M76 75L52 43L47 31",7)}${limb(down?"M76 75L102 53L105 43":"M76 75L100 43L105 31",7)}
+   ${limb("M76 99L58 126",8)}${limb("M76 99L94 126",8)}
+   <path d="M47 43V${down?43:31} M105 43V${down?43:31}" stroke="${rose}" stroke-width="3"/>
+  </g>`;
+  left=pull(false);right=pull(true);title="Lleva la barra hacia la parte alta del pecho, sin tirar del cuello";
+ } else if(/remo sentado|remo unilateral/.test(n)){
+  muscles="Espalda media y bíceps";
+  const row=(bent)=>`<g><path d="M18 125H140 M33 125V93H120" stroke="${metal}" stroke-width="5" fill="none"/><path d="M32 94L70 94" stroke="${metal}" stroke-width="6"/>
+   ${head(65, bent?49:41)}${limb(bent?"M70 58L90 82L103 94":"M70 50L85 78L103 94",10)}
+   ${limb(bent?"M86 76L61 91L45 105":"M84 69L58 82L45 105",7)}${limb("M103 94L117 124",8)}${limb("M103 94L91 124",8)}
+   <path d="M45 105L20 105" stroke="${rose}" stroke-width="4"/><circle cx="20" cy="105" r="5" fill="${rose}"/>
+  </g>`;
+  left=row(false);right=row(true);title="Lleva los codos hacia atrás y junta suavemente las escápulas";
+ } else if(/peso muerto rumano/.test(n)){
+  muscles="Glúteos e isquiotibiales";
+  const hinge=(bend)=>`<g>${head(76,bend?47:23)}${limb(bend?"M80 58L105 78":"M76 34L76 77",11)}
+   ${limb(bend?"M91 65L64 87L51 97":"M76 48L48 70L43 91",7)}${limb(bend?"M91 65L112 87":"M76 48L104 70",7)}
+   ${limb(bend?"M105 78L91 105L78 126":"M76 77L62 103L57 127",9)}${limb(bend?"M105 78L120 105L130 126":"M76 77L93 103L103 127",9)}
+   <path d="M47 94L56 105 M56 105L56 120" stroke="${metal}" stroke-width="5" fill="none"/>
+   <path d="M50 96L61 96" stroke="${rose}" stroke-width="4"/>
+  </g>`;
+  left=hinge(false);right=hinge(true);title="Desplaza la cadera atrás con la espalda neutra y las pesas cerca";
+ } else if(/abduct|patada de glúteo/.test(n)){
+  muscles="Glúteo medio y glúteo mayor";
+  const kick=(out)=>`<g><path d="M16 125H140" stroke="${metal}" stroke-width="3"/>${head(68,30)}${limb("M68 40L68 82",11)}${limb("M68 51L44 70L30 70",7)}${limb("M68 51L91 69L104 69",7)}${limb("M68 82L51 125",9)}${limb(out?"M68 82L112 103L132 103":"M68 82L83 125",9)}<path d="M68 82L${out?112:83} ${out?103:125}" stroke="${rose}" stroke-width="3" fill="none"/></g>`;
+  left=kick(false);right=kick(true);title="Separa o lleva la pierna atrás sin girar la pelvis";
+ } else {
+  muscles="Músculos principales del ejercicio";
+  const move=(b)=>`<g>${head(76,27)}${limb("M76 37L76 82",11)}${limb(b?"M76 49L47 69":"M76 49L50 39",7)}${limb(b?"M76 49L105 69":"M76 49L102 39",7)}${limb("M76 82L55 126",9)}${limb("M76 82L98 126",9)}<path d="M24 130H128" stroke="${metal}" stroke-width="3"/></g>`;
+  left=move(false);right=move(true);title="Realiza el recorrido despacio y mantén el control";
+ }
+ const panel=(content,x,label)=>`<g transform="translate(${x},0)"><rect x="0" y="0" width="156" height="172" rx="13" fill="#fff" stroke="#ead4dc"/><text x="78" y="17" text-anchor="middle" font-size="10" font-weight="700" fill="${rose}">${label}</text><g transform="translate(3,22)">${content}</g></g>`;
+ return `<div style="display:flex;gap:10px;justify-content:center;align-items:center;flex-wrap:wrap">
+ <svg viewBox="0 0 322 174" role="img" aria-label="Guía técnica ilustrada de ${esc(name)}" style="width:100%;height:auto;max-width:430px">
+ ${panel(left,0,"POSICIÓN INICIAL")}${panel(right,166,"MOVIMIENTO")}
+ <path d="M150 91H171M165 85L171 91L165 97" stroke="${rose}" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+ </svg></div><div style="font-size:11px;color:#8b7d83;margin-top:5px"><b>Zona trabajada:</b> ${muscles} · Esquema orientativo</div>`;
 }
 function openGuide(name){const g=exerciseGuides[name]||{muscles:"Músculos según la variante",steps:["Colócate de forma estable y ajusta la máquina o el material.","Realiza el movimiento lentamente, sin rebotes y con un recorrido cómodo.","Vuelve a la posición inicial controlando el peso."],tip:"Empieza con poco peso y pide ayuda al personal del gimnasio si no tienes clara la colocación."};document.getElementById("guideTitle").textContent=name;document.getElementById("guideIllustration").innerHTML=guideIllustration(name);document.getElementById("guideDescription").innerHTML=`<p class="small muted"><b>Trabaja:</b> ${esc(g.muscles)}</p><b>Cómo hacerlo</b><ol class="guide-steps">${g.steps.map(x=>`<li>${esc(x)}</li>`).join("")}</ol><div class="guide-tip"><b>💡 Consejo:</b> ${esc(g.tip)}</div>`;document.getElementById("guideVideo").href="https://www.youtube.com/results?search_query="+encodeURIComponent(name+" técnica correcta gimnasio demostración");document.getElementById("guideOverlay").classList.add("open")}
 document.getElementById("closeGuide").onclick=()=>document.getElementById("guideOverlay").classList.remove("open");document.getElementById("guideDone").onclick=()=>document.getElementById("guideOverlay").classList.remove("open");document.getElementById("guideOverlay").onclick=e=>{if(e.target.id==="guideOverlay")e.currentTarget.classList.remove("open")};
