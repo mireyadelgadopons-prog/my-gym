@@ -29,6 +29,17 @@ input[type=file]{font-size:12px;max-width:100%}
 .guidebtn{border:1px solid var(--line);background:#fff5f8;color:var(--rose);border-radius:20px;padding:6px 10px;font-size:11px;font-weight:750;margin:0 0 8px 6px}.guide-overlay{position:fixed;inset:0;background:#24182099;z-index:30;display:none;align-items:flex-end;justify-content:center;padding:12px}.guide-overlay.open{display:flex}.guide-panel{background:#fffafb;width:min(650px,100%);max-height:90vh;overflow:auto;border-radius:24px;padding:18px;box-shadow:0 15px 50px #24182044}.guide-visual{background:linear-gradient(135deg,#f8e5eb,#fff7f9);border-radius:18px;padding:14px;margin:12px 0;text-align:center}.guide-visual svg{width:100%;height:150px;max-width:340px}.guide-steps{padding-left:20px;font-size:13px;line-height:1.6}.guide-steps li{margin:7px 0}.guide-tip{background:#f7edf1;border-radius:13px;padding:12px;font-size:12px;line-height:1.5;margin:10px 0}.guide-actions{display:flex;gap:8px;flex-wrap:wrap}.guide-actions a{display:inline-block;text-decoration:none}.guide-close{border:0;background:#f7e8ed;color:var(--rose);border-radius:12px;padding:9px 12px;font-weight:750}
 footer{text-align:center;color:#b19da5;font-size:10px;padding:16px}
 @media(min-width:600px){main{padding:24px}.grid{grid-template-columns:repeat(4,1fr)}}
+.real-guide{margin:0 auto 10px;max-width:680px}.real-guide img{display:block;width:100%;height:auto;border-radius:16px;border:1px solid var(--line)}.real-guide-caption{display:flex;justify-content:space-around;gap:8px;margin-top:8px;color:var(--rose);font-weight:800;font-size:13px}.real-guide .small{text-align:center;margin:6px 0 0}
+
+.real-guide{display:grid;gap:10px;text-align:left}
+.real-guide-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.real-guide-card{background:#fff;border:1px solid var(--line);border-radius:15px;padding:7px;min-width:0}
+.real-guide-card img{display:block;width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:10px;background:#f7e8ed}
+.real-guide-card b{display:block;text-align:center;font-size:12px;color:var(--rose);padding:7px 2px 3px}
+.real-guide-single img{width:100%;max-height:390px;object-fit:contain;border-radius:14px;background:#fff}
+.real-guide-missing{border:1px dashed #d9a9b8;border-radius:14px;padding:16px;text-align:center;background:#fff;font-size:13px;line-height:1.5;color:var(--muted)}
+.real-guide-missing strong{display:block;color:var(--rose);font-size:14px;margin-bottom:5px}
+@media(max-width:390px){.real-guide-grid{gap:6px}.real-guide-card{padding:5px}.real-guide-card b{font-size:11px}}
 </style>
 </head>
 <body>
@@ -124,107 +135,39 @@ const exerciseGuides={
 "Jalón de tríceps":{muscles:"Tríceps",steps:["Colócate frente a la polea alta y sujeta la cuerda o barra.","Mantén los codos pegados al cuerpo y empuja el agarre hacia abajo.","Regresa lentamente hasta que los antebrazos queden cerca de la horizontal."],tip:"Los hombros y los codos deben permanecer bastante quietos."},
 "Plancha":{muscles:"Abdomen y estabilidad del tronco",steps:["Apoya antebrazos y puntas de los pies, con codos debajo de los hombros.","Forma una línea recta desde la cabeza hasta los talones.","Aprieta abdomen y glúteos y respira con normalidad mientras mantienes la posición."],tip:"Si la cadera se hunde o sube demasiado, apoya las rodillas y mantén una versión más sencilla."}
 };
+const exercisePhotoFiles={
+ "Prensa de piernas":"prensa-piernas",
+ "Sentadilla":"sentadilla",
+ "Extensión de cuádriceps":"extension-cuadriceps",
+ "Curl femoral":"curl-femoral",
+ "Abductores":"abductores",
+ "Jalón al pecho":"jalon-pecho",
+ "Remo sentado":"remo-sentado",
+ "Remo unilateral":"remo-unilateral",
+ "Curl de bíceps":"curl-biceps",
+ "Curl martillo":"curl-martillo",
+ "Hip thrust":"hip-thrust",
+ "Peso muerto rumano":"peso-muerto-rumano",
+ "Patada de glúteo":"patada-gluteo",
+ "Abducción de cadera":"abduccion-cadera",
+ "Puente de glúteos":"puente-gluteos",
+ "Press de pecho":"press-pecho",
+ "Aperturas":"aperturas",
+ "Press de hombros":"press-hombros",
+ "Extensión de tríceps":"extension-triceps",
+ "Jalón de tríceps":"jalon-triceps",
+ "Plancha":"plancha"
+};
 function guideIllustration(name){
- const n=name.toLowerCase();
- const rose="#a85f78", dark="#49343d", skin="#d99aaa", pale="#f2d7e0", metal="#8e929b", grey="#c9cbd0";
- const arrow='<path d="M0 0 L18 0 M11 -7 L18 0 L11 7" fill="none" stroke="'+rose+'" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>';
- const head=(x,y)=>`<circle cx="${x}" cy="${y}" r="9" fill="${skin}" stroke="${dark}" stroke-width="2"/>`;
- const limb=(d,w=8)=>`<path d="${d}" fill="none" stroke="${dark}" stroke-width="${w}" stroke-linecap="round" stroke-linejoin="round"/>`;
- const machine=(body)=>`<g>${body}</g>`;
- let title="Movimiento controlado", left="", right="", muscles="";
- if(/prensa/.test(n)){
-  muscles="Cuádriceps y glúteos";
-  const press=(extended)=>`<g>
-   <path d="M18 128H145 M32 125L40 50H112L130 125" stroke="${metal}" stroke-width="5" fill="none"/>
-   <path d="M48 53L112 53" stroke="${metal}" stroke-width="5"/>
-   <path d="M112 53L132 35" stroke="${metal}" stroke-width="5"/>
-   <path d="M117 27L145 15L154 38L126 50Z" fill="${grey}" stroke="${metal}" stroke-width="3"/>
-   <path d="M34 111L34 126 M145 15L145 5" stroke="${metal}" stroke-width="4"/>
-   <path d="M48 99L73 99L86 112" stroke="${metal}" stroke-width="4" fill="none"/>
-   ${head(53,66)}
-   ${limb(extended?"M61 72 L78 85 L103 63":"M61 72 L78 88 L89 109",10)}
-   ${limb(extended?"M103 63 L123 47":"M89 109 L121 47",9)}
-   ${limb("M78 85 L70 100",6)}
-   <path d="${extended?"M123 47L151 35":"M121 47L151 35"}" stroke="${rose}" stroke-width="3" fill="none"/>
-   <circle cx="${extended?125:91}" cy="${extended?63:109}" r="5" fill="${rose}"/>
-  </g>`;
-  left=press(false); right=press(true); title="Empuja la plataforma y vuelve sin bloquear las rodillas";
- } else if(/sentadilla/.test(n)){
-  muscles="Cuádriceps y glúteos";
-  const squat=(down)=>`<g>${head(76,down?35:24)}
-   ${limb(down?"M76 45 L78 76":"M76 35 L76 78",11)}
-   ${limb(down?"M76 53 L48 65 L35 53":"M76 48 L48 55 L34 42",7)}
-   ${limb(down?"M76 53 L104 65 L117 53":"M76 48 L104 55 L118 42",7)}
-   ${limb(down?"M78 76 L51 91 L37 119":"M76 78 L58 101 L48 127",10)}
-   ${limb(down?"M78 76 L103 91 L119 119":"M76 78 L94 101 L107 127",10)}
-   <path d="M24 129H132" stroke="${metal}" stroke-width="3"/>
-  </g>`;
-  left=squat(false); right=squat(true); title="Lleva la cadera atrás y baja manteniendo el pecho erguido";
- } else if(/extensión de cuádriceps/.test(n)){
-  muscles="Cuádriceps";
-  const leg=(raised)=>`<g><path d="M18 112H135 M35 110V65H99V110" stroke="${metal}" stroke-width="5" fill="none"/><path d="M42 65L42 35H78" stroke="${metal}" stroke-width="5" fill="none"/>
-   ${head(48,42)}${limb("M55 48L78 72L91 82",10)}
-   ${limb(raised?"M91 82L111 45L127 45":"M91 82L106 107L127 107",9)}
-   <circle cx="91" cy="82" r="6" fill="${rose}"/><rect x="${raised?119:119}" y="${raised?39:101}" width="17" height="13" rx="5" fill="${grey}" stroke="${metal}" stroke-width="2"/>
-   <path d="M23 113H136" stroke="${metal}" stroke-width="4"/></g>`;
-  left=leg(false);right=leg(true);title="Extiende las rodillas sin impulso y baja despacio";
- } else if(/curl femoral/.test(n)){
-  muscles="Isquiotibiales (parte posterior del muslo)";
-  const leg=(bend)=>`<g><path d="M16 109H140 M29 107V55H125V107" stroke="${metal}" stroke-width="5" fill="none"/><path d="M40 56L40 31H88" stroke="${metal}" stroke-width="5" fill="none"/>
-   ${head(49,39)}${limb("M57 46L85 67L103 76",10)}
-   ${limb(bend?"M103 76L119 96L103 115":"M103 76L127 109",9)}
-   <circle cx="103" cy="76" r="6" fill="${rose}"/><rect x="${bend?96:120}" y="${bend?109:101}" width="22" height="12" rx="5" fill="${grey}" stroke="${metal}" stroke-width="2"/>
-   </g>`;
-  left=leg(false);right=leg(true);title="Flexiona las rodillas llevando los talones hacia los glúteos";
- } else if(/hip thrust|puente/.test(n)){
-  muscles="Glúteos e isquiotibiales";
-  const bridge=(up)=>`<g><path d="M16 95H48V125H16Z" fill="${grey}" stroke="${metal}" stroke-width="3"/><path d="M16 125H145" stroke="${metal}" stroke-width="3"/>
-   ${head(54,up?65:84)}${limb(up?"M64 69L91 70L113 91":"M64 88L89 105L113 112",11)}
-   ${limb("M113 91L132 123",9)}${limb(up?"M91 70L77 105":"M89 105L77 125",9)}
-   <circle cx="${up?91:89}" cy="${up?70:105}" r="6" fill="${rose}"/>
-   <path d="M50 125H140" stroke="${metal}" stroke-width="3"/></g>`;
-  left=bridge(false);right=bridge(true);title="Eleva la cadera hasta alinear hombros, cadera y rodillas";
- } else if(/jalón al pecho/.test(n)){
-  muscles="Espalda (dorsales) y bíceps";
-  const pull=(down)=>`<g><path d="M24 128V18H129V128 M24 18H129" stroke="${metal}" stroke-width="5" fill="none"/><path d="M76 18V${down?43:31}" stroke="${metal}" stroke-width="3"/><path d="M47 ${down?43:31}H105" stroke="${rose}" stroke-width="5" stroke-linecap="round"/>
-   ${head(76,down?58:51)}${limb("M76 68L76 99",10)}${limb(down?"M76 75L50 53L47 43":"M76 75L52 43L47 31",7)}${limb(down?"M76 75L102 53L105 43":"M76 75L100 43L105 31",7)}
-   ${limb("M76 99L58 126",8)}${limb("M76 99L94 126",8)}
-   <path d="M47 43V${down?43:31} M105 43V${down?43:31}" stroke="${rose}" stroke-width="3"/>
-  </g>`;
-  left=pull(false);right=pull(true);title="Lleva la barra hacia la parte alta del pecho, sin tirar del cuello";
- } else if(/remo sentado|remo unilateral/.test(n)){
-  muscles="Espalda media y bíceps";
-  const row=(bent)=>`<g><path d="M18 125H140 M33 125V93H120" stroke="${metal}" stroke-width="5" fill="none"/><path d="M32 94L70 94" stroke="${metal}" stroke-width="6"/>
-   ${head(65, bent?49:41)}${limb(bent?"M70 58L90 82L103 94":"M70 50L85 78L103 94",10)}
-   ${limb(bent?"M86 76L61 91L45 105":"M84 69L58 82L45 105",7)}${limb("M103 94L117 124",8)}${limb("M103 94L91 124",8)}
-   <path d="M45 105L20 105" stroke="${rose}" stroke-width="4"/><circle cx="20" cy="105" r="5" fill="${rose}"/>
-  </g>`;
-  left=row(false);right=row(true);title="Lleva los codos hacia atrás y junta suavemente las escápulas";
- } else if(/peso muerto rumano/.test(n)){
-  muscles="Glúteos e isquiotibiales";
-  const hinge=(bend)=>`<g>${head(76,bend?47:23)}${limb(bend?"M80 58L105 78":"M76 34L76 77",11)}
-   ${limb(bend?"M91 65L64 87L51 97":"M76 48L48 70L43 91",7)}${limb(bend?"M91 65L112 87":"M76 48L104 70",7)}
-   ${limb(bend?"M105 78L91 105L78 126":"M76 77L62 103L57 127",9)}${limb(bend?"M105 78L120 105L130 126":"M76 77L93 103L103 127",9)}
-   <path d="M47 94L56 105 M56 105L56 120" stroke="${metal}" stroke-width="5" fill="none"/>
-   <path d="M50 96L61 96" stroke="${rose}" stroke-width="4"/>
-  </g>`;
-  left=hinge(false);right=hinge(true);title="Desplaza la cadera atrás con la espalda neutra y las pesas cerca";
- } else if(/abduct|patada de glúteo/.test(n)){
-  muscles="Glúteo medio y glúteo mayor";
-  const kick=(out)=>`<g><path d="M16 125H140" stroke="${metal}" stroke-width="3"/>${head(68,30)}${limb("M68 40L68 82",11)}${limb("M68 51L44 70L30 70",7)}${limb("M68 51L91 69L104 69",7)}${limb("M68 82L51 125",9)}${limb(out?"M68 82L112 103L132 103":"M68 82L83 125",9)}<path d="M68 82L${out?112:83} ${out?103:125}" stroke="${rose}" stroke-width="3" fill="none"/></g>`;
-  left=kick(false);right=kick(true);title="Separa o lleva la pierna atrás sin girar la pelvis";
- } else {
-  muscles="Músculos principales del ejercicio";
-  const move=(b)=>`<g>${head(76,27)}${limb("M76 37L76 82",11)}${limb(b?"M76 49L47 69":"M76 49L50 39",7)}${limb(b?"M76 49L105 69":"M76 49L102 39",7)}${limb("M76 82L55 126",9)}${limb("M76 82L98 126",9)}<path d="M24 130H128" stroke="${metal}" stroke-width="3"/></g>`;
-  left=move(false);right=move(true);title="Realiza el recorrido despacio y mantén el control";
+ const slug=exercisePhotoFiles[name];
+ if(!slug) return `<div class="real-guide-missing"><strong>Guía visual no disponible</strong>Consulta el vídeo para ver la ejecución de este ejercicio.</div>`;
+ if(name==="Extensión de cuádriceps"){
+  return `<div class="real-guide real-guide-single"><img src="./assets/extension-cuadriceps.jpg" alt="Fotografía demostrativa de extensión de cuádriceps"><div class="real-guide-grid"><div class="real-guide-card"><b>① Posición inicial</b></div><div class="real-guide-card"><b>② Extensión controlada</b></div></div></div>`;
  }
- const panel=(content,x,label)=>`<g transform="translate(${x},0)"><rect x="0" y="0" width="156" height="172" rx="13" fill="#fff" stroke="#ead4dc"/><text x="78" y="17" text-anchor="middle" font-size="10" font-weight="700" fill="${rose}">${label}</text><g transform="translate(3,22)">${content}</g></g>`;
- return `<div style="display:flex;gap:10px;justify-content:center;align-items:center;flex-wrap:wrap">
- <svg viewBox="0 0 322 174" role="img" aria-label="Guía técnica ilustrada de ${esc(name)}" style="width:100%;height:auto;max-width:430px">
- ${panel(left,0,"POSICIÓN INICIAL")}${panel(right,166,"MOVIMIENTO")}
- <path d="M150 91H171M165 85L171 91L165 97" stroke="${rose}" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
- </svg></div><div style="font-size:11px;color:#8b7d83;margin-top:5px"><b>Zona trabajada:</b> ${muscles} · Esquema orientativo</div>`;
+ const first=`./assets/${slug}-1.jpg`, second=`./assets/${slug}-2.jpg`;
+ return `<div class="real-guide"><div class="real-guide-grid"><div class="real-guide-card"><img src="${first}" alt="${name}: posición inicial" onerror="this.parentElement.innerHTML='<div class=&quot;real-guide-missing&quot;>Fotografía pendiente de añadir</div>'"><b>① Posición inicial</b></div><div class="real-guide-card"><img src="${second}" alt="${name}: movimiento" onerror="this.parentElement.innerHTML='<div class=&quot;real-guide-missing&quot;>Fotografía pendiente de añadir</div>'"><b>② Movimiento</b></div></div></div>`;
 }
+
 function openGuide(name){const g=exerciseGuides[name]||{muscles:"Músculos según la variante",steps:["Colócate de forma estable y ajusta la máquina o el material.","Realiza el movimiento lentamente, sin rebotes y con un recorrido cómodo.","Vuelve a la posición inicial controlando el peso."],tip:"Empieza con poco peso y pide ayuda al personal del gimnasio si no tienes clara la colocación."};document.getElementById("guideTitle").textContent=name;document.getElementById("guideIllustration").innerHTML=guideIllustration(name);document.getElementById("guideDescription").innerHTML=`<p class="small muted"><b>Trabaja:</b> ${esc(g.muscles)}</p><b>Cómo hacerlo</b><ol class="guide-steps">${g.steps.map(x=>`<li>${esc(x)}</li>`).join("")}</ol><div class="guide-tip"><b>💡 Consejo:</b> ${esc(g.tip)}</div>`;document.getElementById("guideVideo").href="https://www.youtube.com/results?search_query="+encodeURIComponent(name+" técnica correcta gimnasio demostración");document.getElementById("guideOverlay").classList.add("open")}
 document.getElementById("closeGuide").onclick=()=>document.getElementById("guideOverlay").classList.remove("open");document.getElementById("guideDone").onclick=()=>document.getElementById("guideOverlay").classList.remove("open");document.getElementById("guideOverlay").onclick=e=>{if(e.target.id==="guideOverlay")e.currentTarget.classList.remove("open")};
 function renderSession(){const done=session.filter(e=>e.done).length,pct=session.length?Math.round(done/session.length*100):0;document.getElementById("sessionProgress").textContent=pct+"%";document.getElementById("sessionBar").style.width=pct+"%";document.getElementById("exerciseList").innerHTML=session.length?session.map((e,i)=>`<div class="exercise"><div class="between"><div style="flex:1"><h3 style="display:inline">${i+1}. ${esc(e.name)}</h3><button class="guidebtn" data-guide="${i}">▶ Cómo se hace</button></div><input class="check" type="checkbox" data-done="${i}" ${e.done?"checked":""} aria-label="Completado"></div><div class="fields"><label>Series<input type="number" min="1" data-field="sets" data-i="${i}" value="${e.sets}"></label><label>Repeticiones<input type="number" min="1" data-field="reps" data-i="${i}" value="${e.reps}"></label><label>Peso (kg)<input type="number" min="0" step=".5" data-field="weight" data-i="${i}" value="${e.weight}" placeholder="—"></label></div></div>`).join(""):`<div class="empty">Añade tu primer ejercicio.</div>`;
