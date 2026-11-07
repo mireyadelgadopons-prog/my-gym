@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#f6dfe5">
+<meta name="description" content="Tu diario personal de entrenamiento">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<title>My Gym</title>
+<style>
+:root{--pink:#e8b9c7;--pink2:#f7e8ed;--rose:#a85f78;--ink:#352b30;--muted:#8b7d83;--paper:#fffafb;--line:#f0dce3;--green:#718875;--shadow:0 8px 28px #7b465414}
+*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+button,input,select{font:inherit}button{cursor:pointer}.app{max-width:760px;margin:auto;min-height:100vh;padding-bottom:92px}
+header{padding:24px 20px 16px;background:linear-gradient(135deg,#f9e9ee,#fff8fa);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:4}
+.top{display:flex;justify-content:space-between;align-items:center}.brand{font-size:25px;font-weight:850;letter-spacing:-1px}.brand span{color:var(--rose)}.sub{font-size:12px;color:var(--muted);margin-top:3px}.date{font-size:12px;color:var(--rose);font-weight:700;background:white;border:1px solid var(--line);padding:8px 11px;border-radius:30px}
+main{padding:18px 16px}.view{display:none}.view.active{display:block}.hello{font-size:25px;font-weight:800;letter-spacing:-.8px;margin:4px 0}.muted{color:var(--muted)}.small{font-size:12px}.card{background:white;border:1px solid var(--line);border-radius:20px;padding:16px;margin:13px 0;box-shadow:var(--shadow)}
+.hero{background:linear-gradient(135deg,#f4dce4,#fff5f7);border:0;padding:20px}.hero h2{margin:0 0 6px;font-size:21px}.hero p{margin:0;color:#80616d;font-size:13px;line-height:1.5}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.stat{padding:14px;background:white;border:1px solid var(--line);border-radius:17px}.stat b{display:block;font-size:24px;color:var(--rose)}.stat span{font-size:11px;color:var(--muted)}
+.section-title{font-size:16px;font-weight:800;margin:22px 2px 10px}.daylist{display:grid;gap:9px}.day{display:flex;align-items:center;gap:12px;padding:13px;border:1px solid var(--line);border-radius:16px;background:white;text-align:left;width:100%;color:var(--ink)}.day .bubble{width:40px;height:40px;border-radius:13px;background:var(--pink2);display:grid;place-items:center;font-size:18px}.day strong{display:block;font-size:14px}.day small{color:var(--muted)}.day .arrow{margin-left:auto;color:var(--rose);font-size:20px}
+nav{position:fixed;bottom:0;left:0;right:0;background:#fffdfdF2;backdrop-filter:blur(12px);border-top:1px solid var(--line);display:flex;justify-content:center;z-index:10;padding:8px max(8px,env(safe-area-inset-right)) calc(8px + env(safe-area-inset-bottom))}.navinner{width:min(760px,100%);display:grid;grid-template-columns:repeat(4,1fr);gap:4px}.navbtn{border:0;background:transparent;color:var(--muted);padding:7px 2px;border-radius:12px;font-size:11px}.navbtn span{display:block;font-size:19px;margin-bottom:2px}.navbtn.active{color:var(--rose);background:var(--pink2);font-weight:800}
+.btn{border:0;border-radius:13px;padding:11px 15px;background:var(--rose);color:white;font-weight:750}.btn.secondary{background:var(--pink2);color:var(--rose)}.btn.ghost{background:white;color:var(--rose);border:1px solid var(--line)}.btn.full{width:100%}.row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}.between{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.exercise{padding:13px 0;border-bottom:1px solid #f4e9ed}.exercise:last-child{border:0}.exercise h3{font-size:14px;margin:0 0 8px}.fields{display:grid;grid-template-columns:repeat(3,1fr);gap:7px}.fields label,.fieldlabel{font-size:10px;color:var(--muted);display:block}.fields input,.input{width:100%;border:1px solid var(--line);background:#fffafb;border-radius:10px;padding:9px;margin-top:4px;color:var(--ink);min-width:0}.check{accent-color:var(--rose);width:18px;height:18px}.progress{height:8px;background:#f6e8ed;border-radius:20px;overflow:hidden}.progress i{display:block;height:100%;background:var(--rose);width:0}
+.photo{width:100%;max-height:330px;object-fit:cover;border-radius:14px;margin-top:10px}.empty{padding:24px;text-align:center;color:var(--muted);font-size:13px}
+.tabs{display:flex;gap:7px;overflow:auto;padding:2px 0 10px}.pill{white-space:nowrap;border:1px solid var(--line);background:white;border-radius:30px;padding:8px 12px;color:var(--muted);font-size:12px}.pill.active{background:var(--pink2);color:var(--rose);border-color:var(--pink)}
+table{width:100%;border-collapse:collapse;font-size:12px}td,th{text-align:left;padding:9px 5px;border-bottom:1px solid var(--line)}th{color:var(--muted);font-weight:600}
+input[type=file]{font-size:12px;max-width:100%}
+.note{background:#fff5f7;color:#80616d;padding:12px;border-radius:13px;font-size:12px;line-height:1.5}
+footer{text-align:center;color:#b19da5;font-size:10px;padding:16px}
+@media(min-width:600px){main{padding:24px}.grid{grid-template-columns:repeat(4,1fr)}}
+</style>
+</head>
+<body>
+<div class="app">
+<header><div class="top"><div><div class="brand">my <span>gym.</span></div><div class="sub">TU DIARIO DE ENTRENAMIENTO</div></div><div class="date" id="today"></div></div></header>
+<main>
+<section id="home" class="view active">
+  <div class="hero card"><h2>Un día más fuerte 💗</h2><p>Pequeños avances, grandes cambios. Registra tus entrenamientos y celebra tu progreso.</p></div>
+  <div class="grid">
+    <div class="stat"><b id="weekCount">0</b><span>ENTRENOS ESTA SEMANA</span></div>
+    <div class="stat"><b id="totalCount">0</b><span>ENTRENOS REGISTRADOS</span></div>
+    <div class="stat"><b id="exerciseCount">0</b><span>EJERCICIOS COMPLETADOS</span></div>
+    <div class="stat"><b id="photoCount">0</b><span>FOTOS DE PROGRESO</span></div>
+  </div>
+  <div class="section-title">Tu semana</div><div class="daylist" id="homeDays"></div>
+  <div class="section-title">Último entrenamiento</div><div class="card" id="lastWorkout"><div class="empty">Todavía no has registrado ningún entrenamiento. ¡Vamos a por el primero!</div></div>
+</section>
+<section id="workouts" class="view">
+  <div class="between"><div><div class="hello">Mis entrenamientos</div><div class="muted small">Tu planificación de cinco días</div></div><button class="btn secondary" id="editRoutines">Editar días</button></div>
+  <div class="daylist" id="workoutDays" style="margin-top:16px"></div>
+</section>
+<section id="session" class="view">
+  <div class="between"><button class="btn ghost" id="backDays">← Días</button><span class="date" id="sessionDate"></span></div>
+  <h2 class="hello" id="sessionTitle">Entrenamiento</h2><p class="muted small" id="sessionSubtitle"></p>
+  <div class="card"><div class="between"><b>Progreso de hoy</b><b id="sessionProgress">0%</b></div><div class="progress" style="margin-top:10px"><i id="sessionBar"></i></div></div>
+  <div id="exerciseList" class="card"></div>
+  <div class="row"><button class="btn" id="addExercise">+ Añadir ejercicio</button><button class="btn secondary" id="finishWorkout">Guardar entrenamiento</button></div>
+  <div class="note" style="margin-top:14px">Consejo: registra el peso y las repeticiones que realmente hagas. Así podrás comparar sesiones y progresar con cabeza.</div>
+</section>
+<section id="progressView" class="view">
+  <div class="hello">Mi progreso 📈</div><p class="muted small">Tu evolución, a tu ritmo.</p>
+  <div class="card"><b>Peso corporal</b><div class="row" style="margin-top:10px"><input id="bodyWeight" class="input" type="number" step=".1" placeholder="Peso en kg" style="flex:1"><button class="btn" id="saveWeight">Guardar</button></div><div id="weightHistory"></div></div>
+  <div class="card"><div class="between"><b>Fotos de progreso</b><span class="small muted">Privadas en este dispositivo</span></div><p class="small muted">Añade fotos para comparar tu evolución. Se guardan localmente en este móvil.</p><input type="file" id="progressPhoto" accept="image/*" capture="environment"><div id="photoGallery"></div></div>
+  <div class="card"><b>Resumen de entrenamientos</b><div id="statsSummary" class="empty">Cuando registres sesiones aparecerán aquí tus estadísticas.</div></div>
+</section>
+<section id="settings" class="view">
+  <div class="hello">Ajustes</div><p class="muted small">Personaliza tu diario.</p>
+  <div class="card"><b>Nombre de la app</b><input class="input" id="userName" placeholder="¿Cómo quieres que te llame la app?"><button class="btn secondary" id="saveName" style="margin-top:9px">Guardar</button></div>
+  <div class="card"><b>Mis datos</b><p class="small muted">Tus registros se guardan en el almacenamiento de este dispositivo. No se envían a ningún servidor.</p><div class="row"><button class="btn secondary" id="exportData">Exportar copia</button><label class="btn ghost">Importar copia<input type="file" id="importData" accept="application/json" hidden></label></div></div>
+  <div class="card"><b>Restablecer</b><p class="small muted">Borra todos los datos de esta app de este dispositivo.</p><button class="btn ghost" id="resetData">Borrar mis datos</button></div>
+  <div class="note">Importante: si borras los datos del navegador o cambias de móvil, puedes perder tus registros. Exporta una copia de vez en cuando. Las fotos ocupan espacio en el dispositivo.</div>
+</section>
+<footer>MY GYM · HECHA PARA TI 💗</footer>
+</main>
+<nav><div class="navinner">
+<button class="navbtn active" data-view="home"><span>⌂</span>Inicio</button>
+<button class="navbtn" data-view="workouts"><span>🏋️</span>Rutinas</button>
+<button class="navbtn" data-view="progressView"><span>♡</span>Progreso</button>
+<button class="navbtn" data-view="settings"><span>⚙</span>Ajustes</button>
+</div></nav>
+</div>
+<script>
+const defaultDays=[
+ {id:"mon",name:"Lunes",focus:"Piernas",icon:"🦵",exercises:["Prensa de piernas","Sentadilla","Extensión de cuádriceps","Curl femoral","Abductores"]},
+ {id:"tue",name:"Martes",focus:"Espalda y bíceps",icon:"💪",exercises:["Jalón al pecho","Remo sentado","Remo unilateral","Curl de bíceps","Curl martillo"]},
+ {id:"wed",name:"Miércoles",focus:"Glúteos",icon:"🍑",exercises:["Hip thrust","Peso muerto rumano","Patada de glúteo","Abducción de cadera","Puente de glúteos"]},
+ {id:"thu",name:"Jueves",focus:"Pecho y tríceps",icon:"🏋️",exercises:["Press de pecho","Aperturas","Press de hombros","Extensión de tríceps","Jalón de tríceps"]},
+ {id:"fri",name:"Viernes",focus:"Cuerpo completo",icon:"✨",exercises:["Prensa de piernas","Jalón al pecho","Hip thrust","Press de pecho","Plancha"]}
+];
+const KEY="mygym_v1";
+let data=load(), currentDay=null, session=[];
+function load(){try{return JSON.parse(localStorage.getItem(KEY))||{days:defaultDays,logs:[],weights:[],photos:[],userName:""}}catch(e){return {days:defaultDays,logs:[],weights:[],photos:[],userName:""}}}
+function save(){localStorage.setItem(KEY,JSON.stringify(data))}
+function dateKey(d=new Date()){return d.toISOString().slice(0,10)}
+function show(id){document.querySelectorAll(".view").forEach(x=>x.classList.remove("active"));document.getElementById(id).classList.add("active");document.querySelectorAll(".navbtn").forEach(x=>x.classList.toggle("active",x.dataset.view===id));if(id==="home")renderHome();if(id==="workouts")renderDays();if(id==="progressView")renderProgress()}
+function esc(s){return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
+function renderDays(){document.getElementById("workoutDays").innerHTML=data.days.map(d=>`<button class="day" data-day="${d.id}"><span class="bubble">${d.icon}</span><span><strong>${d.name} · ${esc(d.focus)}</strong><small>${d.exercises.length} ejercicios</small></span><span class="arrow">›</span></button>`).join("");document.querySelectorAll("[data-day]").forEach(b=>b.onclick=()=>openSession(b.dataset.day))}
+function renderHome(){const now=new Date(), monday=new Date(now);monday.setDate(now.getDate()-((now.getDay()+6)%7));const wk=data.logs.filter(l=>new Date(l.date+"T12:00:00")>=monday).length;document.getElementById("weekCount").textContent=wk;document.getElementById("totalCount").textContent=data.logs.length;document.getElementById("exerciseCount").textContent=data.logs.reduce((n,l)=>n+l.exercises.filter(e=>e.done).length,0);document.getElementById("photoCount").textContent=data.photos.length;
+document.getElementById("homeDays").innerHTML=data.days.map(d=>`<button class="day" data-home-day="${d.id}"><span class="bubble">${d.icon}</span><span><strong>${d.name} · ${esc(d.focus)}</strong><small>${d.exercises.length} ejercicios planificados</small></span><span class="arrow">›</span></button>`).join("");document.querySelectorAll("[data-home-day]").forEach(b=>b.onclick=()=>openSession(b.dataset.homeDay));
+let last=data.logs[data.logs.length-1];document.getElementById("lastWorkout").innerHTML=last?`<b>${esc(last.dayName)}</b><p class="small muted">${last.date} · ${last.exercises.filter(e=>e.done).length} ejercicios completados</p>`:`<div class="empty">Todavía no has registrado ningún entrenamiento. ¡Vamos a por el primero!</div>`}
+function openSession(id){currentDay=data.days.find(d=>d.id===id);session=currentDay.exercises.map(name=>({name,sets:3,reps:12,weight:"",done:false}));document.getElementById("sessionTitle").textContent=currentDay.name+" · "+currentDay.focus;document.getElementById("sessionSubtitle").textContent="Marca cada ejercicio y apunta tus resultados.";document.getElementById("sessionDate").textContent=new Date().toLocaleDateString("es-ES");renderSession();show("session")}
+function renderSession(){const done=session.filter(e=>e.done).length,pct=session.length?Math.round(done/session.length*100):0;document.getElementById("sessionProgress").textContent=pct+"%";document.getElementById("sessionBar").style.width=pct+"%";document.getElementById("exerciseList").innerHTML=session.length?session.map((e,i)=>`<div class="exercise"><div class="between"><h3>${i+1}. ${esc(e.name)}</h3><input class="check" type="checkbox" data-done="${i}" ${e.done?"checked":""} aria-label="Completado"></div><div class="fields"><label>Series<input type="number" min="1" data-field="sets" data-i="${i}" value="${e.sets}"></label><label>Repeticiones<input type="number" min="1" data-field="reps" data-i="${i}" value="${e.reps}"></label><label>Peso (kg)<input type="number" min="0" step=".5" data-field="weight" data-i="${i}" value="${e.weight}" placeholder="—"></label></div></div>`).join(""):`<div class="empty">Añade tu primer ejercicio.</div>`;
+document.querySelectorAll("[data-done]").forEach(x=>x.onchange=()=>{session[+x.dataset.done].done=x.checked;renderSession()});document.querySelectorAll("[data-field]").forEach(x=>x.onchange=()=>session[+x.dataset.i][x.dataset.field]=x.value)}
+document.getElementById("addExercise").onclick=()=>{let n=prompt("Nombre del ejercicio:");if(n&&n.trim()){session.push({name:n.trim(),sets:3,reps:12,weight:"",done:false});renderSession()}};
+document.getElementById("finishWorkout").onclick=()=>{if(!currentDay)return;data.logs.push({date:dateKey(),dayId:currentDay.id,dayName:currentDay.name+" · "+currentDay.focus,exercises:session});save();alert("¡Entrenamiento guardado! 💗");show("home")};
+document.getElementById("backDays").onclick=()=>show("workouts");
+document.getElementById("editRoutines").onclick=()=>{let d=data.days.map((x,i)=>`${i+1}. ${x.name}: ${x.focus}`).join("\n");let choice=prompt("Escribe el número del día que quieres editar:\n"+d);let idx=Number(choice)-1;if(idx<0||idx>=data.days.length||!choice)return;let day=data.days[idx];let focus=prompt("Enfoque del día:",day.focus);if(focus===null)return;let exercises=prompt("Ejercicios separados por comas:",day.exercises.join(", "));if(exercises===null)return;day.focus=focus;day.exercises=exercises.split(",").map(s=>s.trim()).filter(Boolean);save();renderDays()};
+function renderProgress(){document.getElementById("weightHistory").innerHTML=data.weights.length?`<table><tr><th>Fecha</th><th>Peso</th></tr>${data.weights.slice().reverse().map(w=>`<tr><td>${w.date}</td><td>${w.value} kg</td></tr>`).join("")}</table>`:`<p class="small muted">Aún no hay registros de peso.</p>`;document.getElementById("photoGallery").innerHTML=data.photos.length?data.photos.slice().reverse().map(p=>`<div class="card"><div class="between"><b>${p.date}</b><button class="btn ghost" data-delphoto="${p.id}">Eliminar</button></div><img class="photo" src="${p.src}" alt="Foto de progreso"></div>`).join(""):`<div class="empty">Tus fotos aparecerán aquí.</div>`;document.querySelectorAll("[data-delphoto]").forEach(b=>b.onclick=()=>{if(confirm("¿Eliminar esta foto?")){data.photos=data.photos.filter(p=>p.id!==b.dataset.delphoto);save();renderProgress()}});let done=data.logs.reduce((n,l)=>n+l.exercises.filter(e=>e.done).length,0);document.getElementById("statsSummary").innerHTML=data.logs.length?`<p><b>${data.logs.length}</b> entrenamientos guardados</p><p><b>${done}</b> ejercicios completados</p>`:`Cuando registres sesiones aparecerán aquí tus estadísticas.`}
+document.getElementById("saveWeight").onclick=()=>{let v=Number(document.getElementById("bodyWeight").value);if(!v||v<20||v>300){alert("Introduce un peso válido en kg.");return}data.weights.push({date:dateKey(),value:v});save();renderProgress();document.getElementById("bodyWeight").value=""};
+document.getElementById("progressPhoto").onchange=async e=>{let f=e.target.files[0];if(!f)return;if(f.size>5*1024*1024){alert("Elige una foto de menos de 5 MB para no llenar el almacenamiento.");e.target.value="";return}let reader=new FileReader();reader.onload=()=>{data.photos.push({id:crypto.randomUUID(),date:dateKey(),src:reader.result});try{save();renderProgress()}catch(err){alert("No hay espacio suficiente. Exporta tus datos o elimina fotos antiguas.")}};reader.readAsDataURL(f);e.target.value=""};
+document.getElementById("saveName").onclick=()=>{data.userName=document.getElementById("userName").value.trim();save();alert("Guardado 💗")};
+document.getElementById("exportData").onclick=()=>{let blob=new Blob([JSON.stringify(data)],{type:"application/json"}),a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="my-gym-copia.json";a.click();URL.revokeObjectURL(a.href)};
+document.getElementById("importData").onchange=e=>{let f=e.target.files[0];if(!f)return;let r=new FileReader();r.onload=()=>{try{let d=JSON.parse(r.result);if(!d.days||!d.logs)throw 0;data=d;save();alert("Copia importada correctamente.");location.reload()}catch(err){alert("El archivo no parece una copia válida de My Gym.")}};r.readAsText(f)};
+document.getElementById("resetData").onclick=()=>{if(confirm("¿Seguro? Se borrarán todos tus entrenamientos, fotos y registros de este dispositivo.")){localStorage.removeItem(KEY);data=load();location.reload()}};
+document.querySelectorAll(".navbtn").forEach(b=>b.onclick=()=>show(b.dataset.view));
+document.getElementById("today").textContent=new Date().toLocaleDateString("es-ES",{weekday:"short",day:"numeric",month:"short"});document.getElementById("userName").value=data.userName||"";renderHome();renderDays();
+if("serviceWorker" in navigator && location.protocol.startsWith("http"))navigator.serviceWorker.register("./sw.js").catch(()=>{});
+</script>
+</body></html>
