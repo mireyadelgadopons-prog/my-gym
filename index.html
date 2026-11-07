@@ -27,6 +27,35 @@ table{width:100%;border-collapse:collapse;font-size:12px}td,th{text-align:left;p
 input[type=file]{font-size:12px;max-width:100%}
 .note{background:#fff5f7;color:#80616d;padding:12px;border-radius:13px;font-size:12px;line-height:1.5}
 .guidebtn{border:1px solid var(--line);background:#fff5f8;color:var(--rose);border-radius:20px;padding:6px 10px;font-size:11px;font-weight:750;margin:0 0 8px 6px}.guide-overlay{position:fixed;inset:0;background:#24182099;z-index:30;display:none;align-items:flex-end;justify-content:center;padding:12px}.guide-overlay.open{display:flex}.guide-panel{background:#fffafb;width:min(650px,100%);max-height:90vh;overflow:auto;border-radius:24px;padding:18px;box-shadow:0 15px 50px #24182044}.guide-visual{background:linear-gradient(135deg,#f8e5eb,#fff7f9);border-radius:18px;padding:12px;margin:12px 0;text-align:center}.guide-video-frame{width:100%;aspect-ratio:16/9;background:#241820;border-radius:14px;overflow:hidden}.guide-video-frame video{width:100%;height:100%;object-fit:contain}.guide-video-fallback{padding:22px;color:#80616d;font-size:13px;line-height:1.5}.guide-steps{padding-left:20px;font-size:13px;line-height:1.6}.guide-steps li{margin:7px 0}.guide-tip{background:#f7edf1;border-radius:13px;padding:12px;font-size:12px;line-height:1.5;margin:10px 0}.guide-actions{display:flex;gap:8px;flex-wrap:wrap}.guide-actions a{display:inline-block;text-decoration:none}.guide-close{border:0;background:#f7e8ed;color:var(--rose);border-radius:12px;padding:9px 12px;font-weight:750}
+
+/* MY GYM · guía visual renovada */
+.guide-overlay{align-items:center;padding:10px}
+.guide-panel{width:min(720px,100%);max-height:92dvh;padding:20px 18px 18px;border-radius:26px}
+.guide-panel>.between{position:sticky;top:-20px;z-index:2;background:#fffafb;padding:4px 0 12px;margin:-4px 0 0}
+.guide-visual{padding:14px;margin:8px 0 14px;text-align:left}
+.guide-photo-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;align-items:start}
+.guide-photo-card{min-width:0;display:flex;flex-direction:column;gap:8px}
+.guide-photo-label{display:block;text-align:center;font-size:13px;font-weight:850;color:#8f5269;line-height:1.25;min-height:34px;display:flex;align-items:center;justify-content:center}
+.guide-photo-card img{display:none;width:100%;height:clamp(170px,42vw,290px);object-fit:contain;object-position:center;background:#fff;border:1px solid #f0dce3;border-radius:14px;padding:3px}
+.guide-photo-empty{display:none;min-height:170px;align-items:center;justify-content:center;text-align:center;background:#fff;border:1px dashed #dfbdc9;border-radius:14px;padding:12px;color:#8b7d83;font-size:12px}
+.guide-photo-note{display:flex;align-items:center;justify-content:center;gap:8px;margin:12px 0 0;text-align:center;color:#8f5269;font-size:12px;font-weight:750}
+.guide-photo-note:before{content:'←';font-size:20px}.guide-photo-note:after{content:'→';font-size:20px}
+.guide-muscle-card{background:#fff;border:1px solid #f0dce3;border-radius:16px;padding:13px 14px;margin:12px 0}
+.guide-muscle-card>b{display:block;font-size:14px;margin-bottom:9px}
+#guideMuscles{display:flex;flex-wrap:wrap;gap:7px}
+.muscle-chip{display:inline-flex;align-items:center;gap:5px;background:#f8e9ee;color:#874d64;border-radius:30px;padding:7px 10px;font-size:12px;font-weight:750}
+.guide-columns{display:grid;grid-template-columns:1fr;gap:4px}
+.guide-columns h3{font-size:18px;margin:16px 0 8px}
+.guide-steps{font-size:14px;line-height:1.65;padding-left:22px;margin:0}
+.guide-steps li{padding-left:4px;margin:9px 0}
+.guide-tip{font-size:13px;line-height:1.6;padding:15px;margin:12px 0}
+.guide-tip p{margin:8px 0 0}
+.guide-errors{background:#fff5f7;border:1px solid #f0dce3;border-radius:15px;padding:14px;font-size:13px;line-height:1.55;margin:12px 0}
+.guide-errors ul{margin:8px 0 0;padding-left:20px}
+#guideDone{margin-top:8px}
+@media(min-width:560px){.guide-columns{grid-template-columns:1.1fr .9fr;gap:16px}.guide-photo-card img{height:280px}}
+@media(max-width:380px){.guide-panel{padding:16px 12px}.guide-visual{padding:9px}.guide-photo-grid{gap:7px}.guide-photo-card img{height:155px}.guide-photo-label{font-size:11px}}
+
 footer{text-align:center;color:#b19da5;font-size:10px;padding:16px}
 @media(min-width:600px){main{padding:24px}.grid{grid-template-columns:repeat(4,1fr)}}
 </style>
@@ -83,9 +112,9 @@ footer{text-align:center;color:#b19da5;font-size:10px;padding:16px}
       <div class="guide-photo-card"><span class="guide-photo-label">1 · Posición inicial</span><img id="guideImageStart" alt="Posición inicial del ejercicio"><div class="guide-photo-empty" id="guideEmptyStart">Imagen de posición inicial pendiente</div></div>
       <div class="guide-photo-card"><span class="guide-photo-label">2 · Movimiento</span><img id="guideImageMove" alt="Movimiento del ejercicio"><div class="guide-photo-empty" id="guideEmptyMove">Imagen del movimiento pendiente</div></div>
     </div>
-    <div class="guide-photo-note">Imágenes explicativas estáticas · compara la posición inicial y el movimiento</div>
+    <div class="guide-photo-note">Compara ambas posiciones y observa el recorrido</div>
   </div>
-  <div class="guide-muscle-card"><b>Músculos trabajados</b><div id="guideMuscles"></div></div>
+  <div class="guide-muscle-card"><b>🎯 Músculos que trabajan</b><div id="guideMuscles"></div></div>
   <div class="guide-columns">
     <div><h3>☷ Cómo hacerlo</h3><div id="guideDescription"></div></div>
     <div><div class="guide-tip" id="guideTip"></div><div class="guide-errors" id="guideErrors"></div></div>
@@ -180,7 +209,7 @@ const guideImageFiles={
 function openGuide(name){
  const g=exerciseGuides[name]||{muscles:"Músculos principales según la variante",steps:["Colócate de forma estable y ajusta el material.","Realiza el movimiento de forma controlada, sin rebotes.","Vuelve lentamente a la posición inicial."],tip:"Empieza con una carga que controles y evita cualquier movimiento doloroso."};
  document.getElementById("guideTitle").textContent=name;
- document.getElementById("guideMuscles").textContent=g.muscles;
+ document.getElementById("guideMuscles").innerHTML=g.muscles.split(/,| y /).map(m=>`<span class="muscle-chip">● ${esc(m.trim())}</span>`).join("");
  document.getElementById("guideDescription").innerHTML=`<ol class="guide-steps">${g.steps.map(x=>`<li>${esc(x)}</li>`).join("")}</ol>`;
  document.getElementById("guideTip").innerHTML=`<b>✓ Consejos</b><p> ${esc(g.tip)}</p>`;
  document.getElementById("guideErrors").innerHTML="<b>✕ Errores frecuentes</b><ul><li>Usar demasiado peso.</li><li>Hacer el movimiento con impulso.</li><li>Perder la postura o el control.</li></ul>";
@@ -189,7 +218,7 @@ function openGuide(name){
    const img=document.getElementById("guideImage"+suffix);
    const empty=document.getElementById("guideEmpty"+suffix);
    if(imgs[i]){
-     img.src=imgs[i];img.style.display="block";empty.style.display="none";
+     img.src=imgs[i];img.loading="lazy";img.style.display="block";empty.style.display="none";
    }else{
      img.removeAttribute("src");img.style.display="none";empty.style.display="flex";
    }
