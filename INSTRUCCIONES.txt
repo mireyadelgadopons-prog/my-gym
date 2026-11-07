@@ -1,0 +1,1 @@
+Sube y reemplaza AMBOS archivos en la raíz del repositorio: index.html y sw.js. No sustituyas assets ni manifest ni icon. Después espera unos minutos y cierra/abre la app.
