@@ -72,7 +72,26 @@ footer{text-align:center;color:#b19da5;font-size:10px;padding:16px}
   <div class="note">Importante: si borras los datos del navegador o cambias de móvil, puedes perder tus registros. Exporta una copia de vez en cuando. Las fotos ocupan espacio en el dispositivo.</div>
 </section>
 <footer>MY GYM · HECHA PARA TI 💗</footer>
-<div class="guide-overlay" id="guideOverlay" role="dialog" aria-modal="true" aria-labelledby="guideTitle"><div class="guide-panel"><div class="between"><div><div class="small muted">GUÍA DEL EJERCICIO</div><h2 id="guideTitle" class="hello" style="font-size:21px;margin:4px 0"></h2></div><button class="guide-close" id="closeGuide">Cerrar ✕</button></div><div class="guide-visual"><div class="between" style="margin-bottom:8px"><b style="font-size:13px">Demostración real</b><span class="small muted">Vídeo de técnica</span></div><div class="guide-video-frame" id="guideVideoFrame"><div class="guide-video-fallback">Cargando demostración del ejercicio…</div></div><div class="small muted" style="margin-top:8px">La demostración muestra el movimiento completo para que puedas ver la posición inicial y final.</div></div><div id="guideDescription"></div><div class="guide-actions"><a class="btn" id="guideVideo" target="_blank" rel="noopener">▶ Abrir más demostraciones</a><button class="btn secondary" id="guideDone">Entendido</button></div></div></div>
+<div class="guide-overlay" id="guideOverlay" role="dialog" aria-modal="true" aria-labelledby="guideTitle">
+<div class="guide-panel">
+  <div class="between">
+    <div><div class="small muted">GUÍA DEL EJERCICIO</div><h2 id="guideTitle" class="hello" style="font-size:21px;margin:4px 0"></h2></div>
+    <button class="guide-close" id="closeGuide">Cerrar ✕</button>
+  </div>
+  <div class="guide-visual">
+    <div class="guide-photo-grid">
+      <div class="guide-photo-card"><span class="guide-photo-label">1 · Posición inicial</span><img id="guideImageStart" alt="Posición inicial del ejercicio"><div class="guide-photo-empty" id="guideEmptyStart">Imagen de posición inicial pendiente</div></div>
+      <div class="guide-photo-card"><span class="guide-photo-label">2 · Movimiento</span><img id="guideImageMove" alt="Movimiento del ejercicio"><div class="guide-photo-empty" id="guideEmptyMove">Imagen del movimiento pendiente</div></div>
+    </div>
+    <div class="guide-photo-note">Imágenes explicativas estáticas · compara la posición inicial y el movimiento</div>
+  </div>
+  <div class="guide-muscle-card"><b>Músculos trabajados</b><div id="guideMuscles"></div></div>
+  <div class="guide-columns">
+    <div><h3>☷ Cómo hacerlo</h3><div id="guideDescription"></div></div>
+    <div><div class="guide-tip" id="guideTip"></div><div class="guide-errors" id="guideErrors"></div></div>
+  </div>
+  <button class="btn secondary" id="guideDone">Entendido</button>
+</div></div>
 </main>
 <nav><div class="navinner">
 <button class="navbtn active" data-view="home"><span>⌂</span>Inicio</button>
@@ -131,76 +150,31 @@ const exerciseGuides={
 "Plancha":{muscles:"Abdomen y estabilidad del tronco",steps:["Apoya antebrazos y puntas de los pies, con codos debajo de los hombros.","Forma una línea recta desde la cabeza hasta los talones.","Aprieta abdomen y glúteos y respira con normalidad mientras mantienes la posición."],tip:"Si la cadera se hunde o sube demasiado, apoya las rodillas y mantén una versión más sencilla."}
 };
 
-let exerciseDBPromise=null;
-async function getExerciseDB(){
- if(exerciseDBPromise) return exerciseDBPromise;
- exerciseDBPromise=(async()=>{
-   const cached=localStorage.getItem("mygym_exercise_db_v1");
-   if(cached){try{return JSON.parse(cached)}catch(e){}}
-   const response=await fetch("https://exercise-database.zenithfits.com/api/v1/exercises?limit=317");
-   if(!response.ok) throw new Error("No se pudo cargar la biblioteca");
-   const payload=await response.json();
-   const list=payload.data||[];
-   try{localStorage.setItem("mygym_exercise_db_v1",JSON.stringify(list))}catch(e){}
-   return list;
- })();
- return exerciseDBPromise;
-}
-const exerciseAliases={
- "Prensa de piernas":["leg press","close feet leg press"],
- "Sentadilla":["barbell back squat","bodyweight squat","squat"],
- "Extensión de cuádriceps":["leg extension","seated leg extension"],
- "Curl femoral":["leg curl","lying leg curl","seated leg curl"],
- "Hip Thrust":["hip thrust"],
- "Jalón al pecho":["lat pulldown","cable pulldown"],
- "Remo sentado":["seated row","cable seated row"],
- "Remo con mancuerna":["dumbbell bent-over row","one arm dumbbell row"],
- "Curl de bíceps con barra":["barbell curl"],
- "Curl de bíceps alterno":["dumbbell biceps curl","alternating dumbbell curl"],
- "Peso muerto rumano":["romanian deadlift","dumbbell romanian deadlift"],
- "Patada de glúteo":["cable kickback","glute kickback"],
- "Abducción de cadera":["hip abduction","machine hip abduction"],
- "Pull through":["cable pull through","band pull through"],
- "Press de banca":["barbell bench press"],
- "Press inclinado con mancuernas":["dumbbell incline bench press","incline dumbbell press"],
- "Aperturas en máquina":["pec deck","machine chest fly"],
- "Extensión de tríceps en polea":["cable triceps pushdown","triceps pushdown"],
- "Fondos en máquina":["assisted dip","chest dip","machine dip"],
- "Sentadilla goblet":["dumbbell goblet squat","goblet squat"],
- "Peso muerto con mancuernas":["dumbbell deadlift"],
- "Remo en TRX":["inverted row","suspension row"],
- "Press militar":["dumbbell shoulder press","overhead press"],
- "Plancha":["plank"]
+
+const guideImageFiles={
+ "Extensión de cuádriceps":["assets/extension-cuadriceps.jpg","assets/extension-cuadriceps.jpg"]
 };
-function norm(s){return String(s||"").toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"").replace(/[^a-z0-9]+/g," ").trim()}
-function matchExercise(list,name){
- const aliases=(exerciseAliases[name]||[name]).map(norm);
- return list.find(x=>aliases.some(a=>norm(x.name)===a)) ||
-        list.find(x=>aliases.some(a=>norm(x.name).includes(a)||a.includes(norm(x.name))));
-}
-async function openGuide(name){
+function openGuide(name){
  const g=exerciseGuides[name]||{muscles:"Músculos principales según la variante",steps:["Colócate de forma estable y ajusta el material.","Realiza el movimiento de forma controlada, sin rebotes.","Vuelve lentamente a la posición inicial."],tip:"Empieza con una carga que controles y evita cualquier movimiento doloroso."};
  document.getElementById("guideTitle").textContent=name;
- document.getElementById("guideDescription").innerHTML=`<p class="small muted"><b>Trabaja:</b> ${esc(g.muscles)}</p><b>Cómo hacerlo</b><ol class="guide-steps">${g.steps.map(x=>`<li>${esc(x)}</li>`).join("")}</ol><div class="guide-tip"><b>💡 Consejo:</b> ${esc(g.tip)}</div>`;
- document.getElementById("guideVideo").href="https://www.youtube.com/results?search_query="+encodeURIComponent(name+" técnica correcta demostración mujer gimnasio");
- document.getElementById("guideVideoFrame").innerHTML='<div class="guide-video-fallback">Buscando una demostración real del movimiento…</div>';
- document.getElementById("guideOverlay").classList.add("open");
- try{
-   const list=await getExerciseDB();
-   const item=matchExercise(list,name);
-   const video=item?.videos?.female||item?.videos?.male;
-   const poster=item?.thumbnails?.female||item?.thumbnails?.male;
-   if(video){
-     document.getElementById("guideVideoFrame").innerHTML=`<video controls playsinline preload="metadata" ${poster?`poster="${poster}"`:''}><source src="${video}" type="video/mp4">Tu navegador no puede reproducir este vídeo.</video>`;
+ document.getElementById("guideMuscles").textContent=g.muscles;
+ document.getElementById("guideDescription").innerHTML=`<ol class="guide-steps">${g.steps.map(x=>`<li>${esc(x)}</li>`).join("")}</ol>`;
+ document.getElementById("guideTip").innerHTML=`<b>✓ Consejos</b><p> ${esc(g.tip)}</p>`;
+ document.getElementById("guideErrors").innerHTML="<b>✕ Errores frecuentes</b><ul><li>Usar demasiado peso.</li><li>Hacer el movimiento con impulso.</li><li>Perder la postura o el control.</li></ul>";
+ const imgs=guideImageFiles[name]||[];
+ ["Start","Move"].forEach((suffix,i)=>{
+   const img=document.getElementById("guideImage"+suffix);
+   const empty=document.getElementById("guideEmpty"+suffix);
+   if(imgs[i]){
+     img.src=imgs[i];img.style.display="block";empty.style.display="none";
    }else{
-     document.getElementById("guideVideoFrame").innerHTML='<div class="guide-video-fallback">No hemos encontrado un vídeo exacto en la biblioteca. Usa el botón para ver demostraciones del mismo ejercicio.</div>';
+     img.removeAttribute("src");img.style.display="none";empty.style.display="flex";
    }
- }catch(e){
-   document.getElementById("guideVideoFrame").innerHTML='<div class="guide-video-fallback">No se ha podido cargar la biblioteca en este momento. Puedes abrir demostraciones del ejercicio con el botón inferior.</div>';
- }
+ });
+ document.getElementById("guideOverlay").classList.add("open");
 }
 document.getElementById("closeGuide").onclick=()=>document.getElementById("guideOverlay").classList.remove("open");document.getElementById("guideDone").onclick=()=>document.getElementById("guideOverlay").classList.remove("open");document.getElementById("guideOverlay").onclick=e=>{if(e.target.id==="guideOverlay")e.currentTarget.classList.remove("open")};
-function renderSession(){const done=session.filter(e=>e.done).length,pct=session.length?Math.round(done/session.length*100):0;document.getElementById("sessionProgress").textContent=pct+"%";document.getElementById("sessionBar").style.width=pct+"%";document.getElementById("exerciseList").innerHTML=session.length?session.map((e,i)=>`<div class="exercise"><div class="between"><div style="flex:1"><h3 style="display:inline">${i+1}. ${esc(e.name)}</h3><button class="guidebtn" data-guide="${i}">▶ Cómo se hace</button></div><input class="check" type="checkbox" data-done="${i}" ${e.done?"checked":""} aria-label="Completado"></div><div class="fields"><label>Series<input type="number" min="1" data-field="sets" data-i="${i}" value="${e.sets}"></label><label>Repeticiones<input type="number" min="1" data-field="reps" data-i="${i}" value="${e.reps}"></label><label>Peso (kg)<input type="number" min="0" step=".5" data-field="weight" data-i="${i}" value="${e.weight}" placeholder="—"></label></div></div>`).join(""):`<div class="empty">Añade tu primer ejercicio.</div>`;
+function renderSession(){const done=session.filter(e=>e.done).length,pct=session.length?Math.round(done/session.length*100):0;document.getElementById("sessionProgress").textContent=pct+"%";document.getElementById("sessionBar").style.width=pct+"%";document.getElementById("exerciseList").innerHTML=session.length?session.map((e,i)=>`<div class="exercise"><div class="between"><div style="flex:1"><h3 style="display:inline">${i+1}. ${esc(e.name)}</h3><button class="guidebtn" data-guide="${i}">☷ Cómo se hace</button></div><input class="check" type="checkbox" data-done="${i}" ${e.done?"checked":""} aria-label="Completado"></div><div class="fields"><label>Series<input type="number" min="1" data-field="sets" data-i="${i}" value="${e.sets}"></label><label>Repeticiones<input type="number" min="1" data-field="reps" data-i="${i}" value="${e.reps}"></label><label>Peso (kg)<input type="number" min="0" step=".5" data-field="weight" data-i="${i}" value="${e.weight}" placeholder="—"></label></div></div>`).join(""):`<div class="empty">Añade tu primer ejercicio.</div>`;
 document.querySelectorAll("[data-guide]").forEach(x=>x.onclick=()=>openGuide(session[+x.dataset.guide].name));document.querySelectorAll("[data-done]").forEach(x=>x.onchange=()=>{session[+x.dataset.done].done=x.checked;renderSession()});document.querySelectorAll("[data-field]").forEach(x=>x.onchange=()=>session[+x.dataset.i][x.dataset.field]=x.value)}
 document.getElementById("addExercise").onclick=()=>{let n=prompt("Nombre del ejercicio:");if(n&&n.trim()){session.push({name:n.trim(),sets:3,reps:12,weight:"",done:false});renderSession()}};
 document.getElementById("finishWorkout").onclick=()=>{if(!currentDay)return;data.logs.push({date:dateKey(),dayId:currentDay.id,dayName:currentDay.name+" · "+currentDay.focus,exercises:session});save();alert("¡Entrenamiento guardado! 💗");show("home")};
