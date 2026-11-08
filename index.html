@@ -6,7 +6,8 @@
 <meta name="theme-color" content="#f6dfe5">
 <meta name="description" content="Tu diario personal de entrenamiento">
 <link rel="manifest" href="manifest.webmanifest">
-<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="icon" type="image/png" href="my-gym-icon.png">
+<link rel="apple-touch-icon" href="my-gym-icon.png">
 <title>My Gym</title>
 <style>
 :root{--pink:#e8b9c7;--pink2:#f7e8ed;--rose:#a85f78;--ink:#352b30;--muted:#8b7d83;--paper:#fffafb;--line:#f0dce3;--green:#718875;--shadow:0 8px 28px #7b465414}
@@ -21,19 +22,16 @@ main{padding:18px 16px}.view{display:none}.view.active{display:block}.hello{font
 nav{position:fixed;bottom:0;left:0;right:0;background:#fffdfdF2;backdrop-filter:blur(12px);border-top:1px solid var(--line);display:flex;justify-content:center;z-index:10;padding:8px max(8px,env(safe-area-inset-right)) calc(8px + env(safe-area-inset-bottom))}.navinner{width:min(760px,100%);display:grid;grid-template-columns:repeat(4,1fr);gap:4px}.navbtn{border:0;background:transparent;color:var(--muted);padding:7px 2px;border-radius:12px;font-size:11px}.navbtn span{display:block;font-size:19px;margin-bottom:2px}.navbtn.active{color:var(--rose);background:var(--pink2);font-weight:800}
 .btn{border:0;border-radius:13px;padding:11px 15px;background:var(--rose);color:white;font-weight:750}.btn.secondary{background:var(--pink2);color:var(--rose)}.btn.ghost{background:white;color:var(--rose);border:1px solid var(--line)}.btn.full{width:100%}.row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}.between{display:flex;justify-content:space-between;align-items:center;gap:10px}
 .exercise{padding:13px 0;border-bottom:1px solid #f4e9ed}.exercise:last-child{border:0}.exercise h3{font-size:14px;margin:0 0 8px}.fields{display:grid;grid-template-columns:repeat(3,1fr);gap:7px}.fields label,.fieldlabel{font-size:10px;color:var(--muted);display:block}.fields input,.input{width:100%;border:1px solid var(--line);background:#fffafb;border-radius:10px;padding:9px;margin-top:4px;color:var(--ink);min-width:0}.check{accent-color:var(--rose);width:18px;height:18px}.progress{height:8px;background:#f6e8ed;border-radius:20px;overflow:hidden}.progress i{display:block;height:100%;background:var(--rose);width:0}
-.exercise-pair{width:100%;height:auto;display:block;object-fit:contain;background:#fff;border:1px solid var(--line);border-radius:14px;margin:9px 0 12px}.photo{width:100%;max-height:330px;object-fit:cover;border-radius:14px;margin-top:10px}.day-poster{width:100%;height:auto;display:block;object-fit:contain;border:1px solid var(--line);border-radius:16px;margin:12px 0 16px;background:white}.empty{padding:24px;text-align:center;color:var(--muted);font-size:13px}
+.photo{width:100%;max-height:330px;object-fit:cover;border-radius:14px;margin-top:10px}.empty{padding:24px;text-align:center;color:var(--muted);font-size:13px}
 .tabs{display:flex;gap:7px;overflow:auto;padding:2px 0 10px}.pill{white-space:nowrap;border:1px solid var(--line);background:white;border-radius:30px;padding:8px 12px;color:var(--muted);font-size:12px}.pill.active{background:var(--pink2);color:var(--rose);border-color:var(--pink)}
 table{width:100%;border-collapse:collapse;font-size:12px}td,th{text-align:left;padding:9px 5px;border-bottom:1px solid var(--line)}th{color:var(--muted);font-weight:600}
-input[type=file]{font-size:12px;max-width:100%}
+input[type=file]{font-size:12px;max-width:100%}.photo-slots{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:12px}.photo-slot{border:1px solid var(--line);border-radius:14px;padding:8px;min-width:0;background:#fffafb}.photo-slot img{width:100%;aspect-ratio:3/4;object-fit:cover;border-radius:9px;display:block}.photo-slot b{display:block;font-size:12px;margin:5px 0}.photo-slot label{display:block;text-align:center;background:var(--pink2);color:var(--rose);padding:7px 4px;border-radius:9px;font-size:11px;font-weight:750;margin-top:7px}.photo-slot input{display:none}.photo-date{width:100%;border:1px solid var(--line);border-radius:10px;padding:10px;background:#fffafb;color:var(--ink)}.photo-day{border-top:1px solid var(--line);padding-top:12px;margin-top:14px}
 .note{background:#fff5f7;color:#80616d;padding:12px;border-radius:13px;font-size:12px;line-height:1.5}
-.guidebtn{border:1px solid var(--line);background:#fff5f8;color:var(--rose);border-radius:20px;padding:6px 10px;font-size:11px;font-weight:750;margin:0 0 8px 6px}.guide-overlay{position:fixed;inset:0;background:#24182099;z-index:30;display:none;align-items:flex-end;justify-content:center;padding:12px}.guide-overlay.open{display:flex}.guide-panel{background:#fffafb;width:min(650px,100%);max-height:90vh;overflow:auto;border-radius:24px;padding:18px;box-shadow:0 15px 50px #24182044}.guide-visual{display:none!important;background:linear-gradient(135deg,#f8e5eb,#fff7f9);border-radius:18px;padding:12px;margin:12px 0;text-align:center}.guide-video-frame{width:100%;aspect-ratio:16/9;background:#241820;border-radius:14px;overflow:hidden}.guide-video-frame video{width:100%;height:100%;object-fit:contain}.guide-video-fallback{padding:22px;color:#80616d;font-size:13px;line-height:1.5}.guide-steps{padding-left:20px;font-size:13px;line-height:1.6}.guide-steps li{margin:7px 0}.guide-tip{background:#f7edf1;border-radius:13px;padding:12px;font-size:12px;line-height:1.5;margin:10px 0}.guide-actions{display:flex;gap:8px;flex-wrap:wrap}.guide-actions a{display:inline-block;text-decoration:none}.guide-close{border:0;background:#f7e8ed;color:var(--rose);border-radius:12px;padding:9px 12px;font-weight:750}
-.guide-full-image{width:100%;height:auto;max-height:72vh;object-fit:contain;border-radius:14px;background:#fff;display:block;margin:0 auto}.guide-photo-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.guide-photo-card img{width:100%;height:auto;max-height:260px;object-fit:contain;border-radius:12px;background:#fff}
+.guidebtn{border:1px solid var(--line);background:#fff5f8;color:var(--rose);border-radius:20px;padding:6px 10px;font-size:11px;font-weight:750;margin:0 0 8px 6px}.guide-overlay{position:fixed;inset:0;background:#24182099;z-index:30;display:none;align-items:flex-end;justify-content:center;padding:12px}.guide-overlay.open{display:flex}.guide-panel{background:#fffafb;width:min(650px,100%);max-height:90vh;overflow:auto;border-radius:24px;padding:18px;box-shadow:0 15px 50px #24182044}.guide-visual{background:linear-gradient(135deg,#f8e5eb,#fff7f9);border-radius:18px;padding:14px;margin:12px 0;text-align:center}.guide-visual svg{width:100%;height:150px;max-width:340px}.guide-steps{padding-left:20px;font-size:13px;line-height:1.6}.guide-steps li{margin:7px 0}.guide-tip{background:#f7edf1;border-radius:13px;padding:12px;font-size:12px;line-height:1.5;margin:10px 0}.guide-actions{display:flex;gap:8px;flex-wrap:wrap}.guide-actions a{display:inline-block;text-decoration:none}.guide-close{border:0;background:#f7e8ed;color:var(--rose);border-radius:12px;padding:9px 12px;font-weight:750}
 footer{text-align:center;color:#b19da5;font-size:10px;padding:16px}
 @media(min-width:600px){main{padding:24px}.grid{grid-template-columns:repeat(4,1fr)}}
 </style>
-<link rel="icon" type="image/png" href="my-gym-icon.png">
-<link rel="apple-touch-icon" href="my-gym-icon.png">
-  </head>
+</head>
 <body>
 <div class="app">
 <header><div class="top"><div><div class="brand">my <span>gym.</span></div><div class="sub">TU DIARIO DE ENTRENAMIENTO</div></div><div class="date" id="today"></div></div></header>
@@ -55,7 +53,7 @@ footer{text-align:center;color:#b19da5;font-size:10px;padding:16px}
 </section>
 <section id="session" class="view">
   <div class="between"><button class="btn ghost" id="backDays">← Días</button><span class="date" id="sessionDate"></span></div>
-  <h2 class="hello" id="sessionTitle">Entrenamiento</h2><p class="muted small" id="sessionSubtitle"></p><img id="dayPoster" class="day-poster" alt="Guía visual de ejercicios del día" style="display:none">
+  <h2 class="hello" id="sessionTitle">Entrenamiento</h2><p class="muted small" id="sessionSubtitle"></p>
   <div class="card"><div class="between"><b>Progreso de hoy</b><b id="sessionProgress">0%</b></div><div class="progress" style="margin-top:10px"><i id="sessionBar"></i></div></div>
   <div id="exerciseList" class="card"></div>
   <div class="row"><button class="btn" id="addExercise">+ Añadir ejercicio</button><button class="btn secondary" id="finishWorkout">Guardar entrenamiento</button></div>
@@ -64,7 +62,7 @@ footer{text-align:center;color:#b19da5;font-size:10px;padding:16px}
 <section id="progressView" class="view">
   <div class="hello">Mi progreso 📈</div><p class="muted small">Tu evolución, a tu ritmo.</p>
   <div class="card"><b>Peso corporal</b><div class="row" style="margin-top:10px"><input id="bodyWeight" class="input" type="number" step=".1" placeholder="Peso en kg" style="flex:1"><button class="btn" id="saveWeight">Guardar</button></div><div id="weightHistory"></div></div>
-  <div class="card"><div class="between"><b>Fotos de progreso</b><span class="small muted">Privadas en este dispositivo</span></div><p class="small muted">Añade fotos para comparar tu evolución. Se guardan localmente en este móvil.</p><input type="file" id="progressPhoto" accept="image/*" capture="environment"><div id="photoGallery"></div></div>
+  <div class="card"><div class="between"><b>Fotos de progreso</b><span class="small muted">Privadas en este dispositivo</span></div><p class="small muted">Guarda tres vistas por fecha para comparar tu evolución.</p><label class="small muted" for="photoDate">Fecha de las fotos</label><input class="photo-date" type="date" id="photoDate"><div id="photoGallery"></div><p class="small muted">Elige las imágenes desde tu galería. Se reducen de tamaño automáticamente para ahorrar espacio.</p></div>
   <div class="card"><b>Resumen de entrenamientos</b><div id="statsSummary" class="empty">Cuando registres sesiones aparecerán aquí tus estadísticas.</div></div>
 </section>
 <section id="settings" class="view">
@@ -75,27 +73,7 @@ footer{text-align:center;color:#b19da5;font-size:10px;padding:16px}
   <div class="note">Importante: si borras los datos del navegador o cambias de móvil, puedes perder tus registros. Exporta una copia de vez en cuando. Las fotos ocupan espacio en el dispositivo.</div>
 </section>
 <footer>MY GYM · HECHA PARA TI 💗</footer>
-<div class="guide-overlay" id="guideOverlay" role="dialog" aria-modal="true" aria-labelledby="guideTitle">
-<div class="guide-panel">
-  <div class="between">
-    <div><div class="small muted">GUÍA DEL EJERCICIO</div><h2 id="guideTitle" class="hello" style="font-size:21px;margin:4px 0"></h2></div>
-    <button class="guide-close" id="closeGuide">Cerrar ✕</button>
-  </div>
-  <div class="guide-visual">
-    <img id="guideFullImage" class="guide-full-image" alt="Ficha visual completa del ejercicio" style="display:none">
-    <div class="guide-photo-grid">
-      <div class="guide-photo-card"><span class="guide-photo-label">1 · Posición inicial</span><img id="guideImageStart" alt="Posición inicial del ejercicio"><div class="guide-photo-empty" id="guideEmptyStart">Imagen de posición inicial pendiente</div></div>
-      <div class="guide-photo-card"><span class="guide-photo-label">2 · Movimiento</span><img id="guideImageMove" alt="Movimiento del ejercicio"><div class="guide-photo-empty" id="guideEmptyMove">Imagen del movimiento pendiente</div></div>
-    </div>
-    <div class="guide-photo-note">Imágenes explicativas estáticas · compara la posición inicial y el movimiento</div>
-  </div>
-  <div class="guide-muscle-card"><b>Músculos trabajados</b><div id="guideMuscles"></div></div>
-  <div class="guide-columns">
-    <div><h3>☷ Cómo hacerlo</h3><div id="guideDescription"></div></div>
-    <div><div class="guide-tip" id="guideTip"></div><div class="guide-errors" id="guideErrors"></div></div>
-  </div>
-  <button class="btn secondary" id="guideDone">Entendido</button>
-</div></div>
+<div class="guide-overlay" id="guideOverlay" role="dialog" aria-modal="true" aria-labelledby="guideTitle"><div class="guide-panel"><div class="between"><div><div class="small muted">GUÍA DEL EJERCICIO</div><h2 id="guideTitle" class="hello" style="font-size:21px;margin:4px 0"></h2></div><button class="guide-close" id="closeGuide">Cerrar ✕</button></div><div class="guide-visual"><div id="guideIllustration"></div><div class="small muted">Ilustración orientativa · compara la posición inicial y el movimiento</div></div><div id="guideDescription"></div><div class="guide-actions"><a class="btn" id="guideVideo" target="_blank" rel="noopener">▶ Ver vídeos del ejercicio</a><button class="btn secondary" id="guideDone">Entendido</button></div></div></div>
 </main>
 <nav><div class="navinner">
 <button class="navbtn active" data-view="home"><span>⌂</span>Inicio</button>
@@ -106,22 +84,23 @@ footer{text-align:center;color:#b19da5;font-size:10px;padding:16px}
 </div>
 <script>
 const defaultDays=[
- {id:"mon",name:"Lunes",focus:"Piernas",icon:"🦵",exercises:["Prensa de piernas","Zancada búlgara","Extensión de cuádriceps","Curl femoral sentado","Hip thrust"]},
- {id:"tue",name:"Martes",focus:"Espalda y bíceps",icon:"💪",exercises:["Jalón al pecho","Remo en máquina","Remo con mancuerna","Curl de bíceps con mancuernas","Curl de bíceps en polea"]},
- {id:"wed",name:"Miércoles",focus:"Glúteos",icon:"🍑",exercises:["Hip thrust","Patada de glúteo en polea","Abducción de cadera","Sentadilla búlgara","Peso muerto rumano"]},
- {id:"thu",name:"Jueves",focus:"Pecho y tríceps",icon:"🏋️",exercises:["Press de banca","Press inclinado con mancuernas","Aperturas en máquina","Extensión de tríceps en polea","Fondos en máquina"]},
- {id:"fri",name:"Viernes",focus:"Full body",icon:"✨",exercises:["Sentadilla en multipower","Peso muerto rumano","Press de hombros","Remo en polea sentada","Plancha abdominal"]}
+ {id:"mon",name:"Lunes",focus:"Piernas",icon:"🦵",exercises:["Prensa de piernas","Sentadilla","Extensión de cuádriceps","Curl femoral","Abductores"]},
+ {id:"tue",name:"Martes",focus:"Espalda y bíceps",icon:"💪",exercises:["Jalón al pecho","Remo sentado","Remo unilateral","Curl de bíceps","Curl martillo"]},
+ {id:"wed",name:"Miércoles",focus:"Glúteos",icon:"🍑",exercises:["Hip thrust","Peso muerto rumano","Patada de glúteo","Abducción de cadera","Puente de glúteos"]},
+ {id:"thu",name:"Jueves",focus:"Pecho y tríceps",icon:"🏋️",exercises:["Press de pecho","Aperturas","Press de hombros","Extensión de tríceps","Jalón de tríceps"]},
+ {id:"fri",name:"Viernes",focus:"Cuerpo completo",icon:"✨",exercises:["Prensa de piernas","Jalón al pecho","Hip thrust","Press de pecho","Plancha"]}
 ];
 const KEY="mygym_v1";
 let data=load(), currentDay=null, session=[];
-/* Actualiza solo la planificación de 5 días; conserva entrenamientos, pesos, fotos y nombre. */
-if(localStorage.getItem("mygym_routine_v3")!=="ok"){
- data.days=defaultDays.map(d=>({...d,exercises:[...d.exercises]}));
- localStorage.setItem("mygym_routine_v3","ok");
- save();
-}
 function load(){try{return JSON.parse(localStorage.getItem(KEY))||{days:defaultDays,logs:[],weights:[],photos:[],userName:""}}catch(e){return {days:defaultDays,logs:[],weights:[],photos:[],userName:""}}}
 function save(){localStorage.setItem(KEY,JSON.stringify(data))}
+const PHOTO_DB="mygym_photos_v2", PHOTO_STORE="images";
+function openPhotoDB(){return new Promise((resolve,reject)=>{const req=indexedDB.open(PHOTO_DB,1);req.onupgradeneeded=()=>{if(!req.result.objectStoreNames.contains(PHOTO_STORE))req.result.createObjectStore(PHOTO_STORE)};req.onsuccess=()=>resolve(req.result);req.onerror=()=>reject(req.error)})}
+async function photoDBPut(id,blob){const db=await openPhotoDB();return new Promise((resolve,reject)=>{const tx=db.transaction(PHOTO_STORE,"readwrite");tx.objectStore(PHOTO_STORE).put(blob,id);tx.oncomplete=()=>{db.close();resolve()};tx.onerror=()=>{db.close();reject(tx.error)}})}
+async function photoDBGet(id){const db=await openPhotoDB();return new Promise((resolve,reject)=>{const req=db.transaction(PHOTO_STORE).objectStore(PHOTO_STORE).get(id);req.onsuccess=()=>{db.close();resolve(req.result||null)};req.onerror=()=>{db.close();reject(req.error)}})}
+async function photoDBDelete(id){const db=await openPhotoDB();return new Promise((resolve,reject)=>{const tx=db.transaction(PHOTO_STORE,"readwrite");tx.objectStore(PHOTO_STORE).delete(id);tx.oncomplete=()=>{db.close();resolve()};tx.onerror=()=>{db.close();reject(tx.error)}})}
+async function compressPhoto(file){const bitmap=await createImageBitmap(file);const scale=Math.min(1,1400/Math.max(bitmap.width,bitmap.height));const canvas=document.createElement("canvas");canvas.width=Math.round(bitmap.width*scale);canvas.height=Math.round(bitmap.height*scale);canvas.getContext("2d").drawImage(bitmap,0,0,canvas.width,canvas.height);bitmap.close();return new Promise(resolve=>canvas.toBlob(resolve,"image/jpeg",.78))}
+async function migrateLegacyPhotos(){const old=(data.photos||[]).filter(p=>p.src);if(!old.length)return;for(const p of old){try{const blob=await (await fetch(p.src)).blob();const slot=p.slot||"frente";const id=p.id||`${p.date}_${slot}`;await photoDBPut(id,blob);p.id=id;p.slot=slot;delete p.src}catch(e){console.warn("No se pudo migrar una foto antigua",e)}}save()}
 function dateKey(d=new Date()){return d.toISOString().slice(0,10)}
 function show(id){document.querySelectorAll(".view").forEach(x=>x.classList.remove("active"));document.getElementById(id).classList.add("active");document.querySelectorAll(".navbtn").forEach(x=>x.classList.toggle("active",x.dataset.view===id));if(id==="home")renderHome();if(id==="workouts")renderDays();if(id==="progressView")renderProgress()}
 function esc(s){return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
@@ -129,7 +108,7 @@ function renderDays(){document.getElementById("workoutDays").innerHTML=data.days
 function renderHome(){const now=new Date(), monday=new Date(now);monday.setDate(now.getDate()-((now.getDay()+6)%7));const wk=data.logs.filter(l=>new Date(l.date+"T12:00:00")>=monday).length;document.getElementById("weekCount").textContent=wk;document.getElementById("totalCount").textContent=data.logs.length;document.getElementById("exerciseCount").textContent=data.logs.reduce((n,l)=>n+l.exercises.filter(e=>e.done).length,0);document.getElementById("photoCount").textContent=data.photos.length;
 document.getElementById("homeDays").innerHTML=data.days.map(d=>`<button class="day" data-home-day="${d.id}"><span class="bubble">${d.icon}</span><span><strong>${d.name} · ${esc(d.focus)}</strong><small>${d.exercises.length} ejercicios planificados</small></span><span class="arrow">›</span></button>`).join("");document.querySelectorAll("[data-home-day]").forEach(b=>b.onclick=()=>openSession(b.dataset.homeDay));
 let last=data.logs[data.logs.length-1];document.getElementById("lastWorkout").innerHTML=last?`<b>${esc(last.dayName)}</b><p class="small muted">${last.date} · ${last.exercises.filter(e=>e.done).length} ejercicios completados</p>`:`<div class="empty">Todavía no has registrado ningún entrenamiento. ¡Vamos a por el primero!</div>`}
-function openSession(id){currentDay=data.days.find(d=>d.id===id);session=currentDay.exercises.map(name=>({name,sets:3,reps:12,weight:"",done:false}));document.getElementById("sessionTitle").textContent=currentDay.name+" · "+currentDay.focus;document.getElementById("sessionSubtitle").textContent="Guía visual y registro de tu entrenamiento.";const poster=document.getElementById("dayPoster");poster.removeAttribute("src");poster.style.display="none";document.getElementById("sessionDate").textContent=new Date().toLocaleDateString("es-ES");renderSession();show("session")}
+function openSession(id){currentDay=data.days.find(d=>d.id===id);session=currentDay.exercises.map(name=>({name,sets:3,reps:12,weight:"",done:false}));document.getElementById("sessionTitle").textContent=currentDay.name+" · "+currentDay.focus;document.getElementById("sessionSubtitle").textContent="Marca cada ejercicio y apunta tus resultados.";document.getElementById("sessionDate").textContent=new Date().toLocaleDateString("es-ES");renderSession();show("session")}
 const exerciseGuides={
 "Prensa de piernas":{muscles:"Cuádriceps y glúteos",steps:["Ajusta el respaldo y coloca los pies a la anchura de las caderas, apoyados en la plataforma.","Desbloquea el seguro y baja despacio hasta donde puedas sin que la pelvis se despegue del respaldo.","Empuja la plataforma con todo el pie, sin bloquear las rodillas al final."],tip:"Mantén las rodillas alineadas con los pies. No dejes que se metan hacia dentro."},
 "Sentadilla":{muscles:"Cuádriceps y glúteos",steps:["Coloca los pies aproximadamente a la anchura de los hombros.","Lleva la cadera atrás y flexiona las rodillas mientras bajas con el pecho abierto.","Empuja el suelo para subir, manteniendo las rodillas alineadas con los pies."],tip:"Baja solo hasta donde mantengas la espalda estable y los talones apoyados."},
@@ -153,100 +132,44 @@ const exerciseGuides={
 "Jalón de tríceps":{muscles:"Tríceps",steps:["Colócate frente a la polea alta y sujeta la cuerda o barra.","Mantén los codos pegados al cuerpo y empuja el agarre hacia abajo.","Regresa lentamente hasta que los antebrazos queden cerca de la horizontal."],tip:"Los hombros y los codos deben permanecer bastante quietos."},
 "Plancha":{muscles:"Abdomen y estabilidad del tronco",steps:["Apoya antebrazos y puntas de los pies, con codos debajo de los hombros.","Forma una línea recta desde la cabeza hasta los talones.","Aprieta abdomen y glúteos y respira con normalidad mientras mantienes la posición."],tip:"Si la cadera se hunde o sube demasiado, apoya las rodillas y mantén una versión más sencilla."}
 };
-
-
-
-exerciseGuides["Zancada búlgara"]={muscles:"Glúteos y cuádriceps",steps:["Colócate de espaldas a un banco y apoya el empeine del pie trasero sobre él.","Da un paso suficiente hacia delante y baja flexionando ambas rodillas, manteniendo el tronco estable.","Empuja con el pie delantero para volver arriba y completa las repeticiones antes de cambiar de pierna."],tip:"Mantén la rodilla delantera alineada con el pie y usa apoyo si necesitas equilibrio."};
-exerciseGuides["Remo en máquina"]={muscles:"Espalda media y bíceps",steps:["Ajusta el asiento y apoya el pecho o los pies según la máquina.","Lleva los codos hacia atrás acercando el agarre al torso.","Vuelve lentamente hasta extender los brazos sin encorvar la espalda."],tip:"Evita impulsarte con el tronco; controla la vuelta."};
-exerciseGuides["Curl de bíceps con mancuernas"]={muscles:"Bíceps",steps:["Colócate de pie con una mancuerna en cada mano y los brazos extendidos.","Flexiona los codos y sube las mancuernas sin balancear el cuerpo.","Baja lentamente hasta casi extender los codos."],tip:"Mantén los codos cerca del cuerpo y las muñecas rectas."};
-exerciseGuides["Curl de bíceps en polea"]={muscles:"Bíceps",steps:["Colócate frente a la polea baja y sujeta la barra o el agarre.","Con los codos pegados al cuerpo, flexiónalos para llevar el agarre hacia los hombros.","Baja de forma controlada sin dejar que el peso te arrastre."],tip:"No muevas los hombros ni arquees la espalda."};
-exerciseGuides["Patada de glúteo en polea"]={muscles:"Glúteo mayor",steps:["Coloca el tobillo en la tobillera de la polea baja y sujétate a la estructura.","Lleva la pierna hacia atrás manteniendo la pelvis estable.","Regresa despacio sin apoyar completamente el peso entre repeticiones."],tip:"Evita arquear la zona lumbar para ganar recorrido."};
-exerciseGuides["Sentadilla búlgara"]={muscles:"Glúteos y cuádriceps",steps:["Coloca el empeine del pie trasero sobre un banco y adelanta el pie delantero.","Baja flexionando la rodilla delantera con el tronco estable.","Empuja el suelo con el pie delantero para volver a subir."],tip:"Ajusta la distancia para que puedas bajar sin perder el equilibrio."};
-exerciseGuides["Sentadilla en multipower"]={muscles:"Cuádriceps y glúteos",steps:["Coloca la barra sobre la parte alta de la espalda y sitúa los pies de forma estable.","Desbloquea la barra, flexiona cadera y rodillas y baja con control.","Empuja el suelo para volver arriba sin bloquear bruscamente las rodillas."],tip:"Mantén las rodillas alineadas con los pies y usa un recorrido cómodo."};
-exerciseGuides["Press de hombros"]={muscles:"Hombros y tríceps",steps:["Siéntate con la espalda apoyada y las mancuernas a la altura de los hombros.","Empuja las mancuernas hacia arriba siguiendo una trayectoria controlada.","Baja lentamente hasta la posición inicial."],tip:"No arquees la zona lumbar ni encojas los hombros."};
-exerciseGuides["Remo en polea sentada"]={muscles:"Espalda media y bíceps",steps:["Siéntate frente a la polea con los pies apoyados y la espalda neutra.","Lleva el agarre hacia el abdomen acercando los codos al cuerpo.","Extiende los brazos despacio sin redondear la espalda."],tip:"Evita balancear el torso para mover más peso."};
-exerciseGuides["Plancha abdominal"]={muscles:"Abdomen y estabilidad del tronco",steps:["Apoya los antebrazos y las puntas de los pies con los codos debajo de los hombros.","Mantén una línea recta desde la cabeza hasta los talones.","Aprieta abdomen y glúteos y respira sin hundir la cadera."],tip:"Termina la serie si pierdes la postura; puedes apoyar las rodillas para adaptar la dificultad."};
-
-const guideImageFiles={
- "Prensa de piernas":["assets/lunes_01_prensa_de_piernas_inicio.jpg","assets/lunes_01_prensa_de_piernas_movimiento.jpg"],
- "Sentadilla":["assets/lunes_02_sentadilla_inicio.jpg","assets/lunes_02_sentadilla_movimiento.jpg"],
- "Extensión de cuádriceps":["assets/lunes_03_extension_de_cuadriceps_inicio.jpg","assets/lunes_03_extension_de_cuadriceps_movimiento.jpg"],
- "Curl femoral":["assets/lunes_04_curl_femoral_inicio.jpg","assets/lunes_04_curl_femoral_movimiento.jpg"],
- "Hip Thrust":["assets/miercoles_01_hip_thrust_inicio.jpg","assets/miercoles_01_hip_thrust_movimiento.jpg"],
- "Jalón al pecho":["assets/martes_01_jalon_al_pecho_inicio.jpg","assets/martes_01_jalon_al_pecho_movimiento.jpg"],
- "Remo sentado":["assets/martes_02_remo_sentado_inicio.jpg","assets/martes_02_remo_sentado_movimiento.jpg"],
- "Remo con mancuerna":["assets/martes_03_remo_con_mancuerna_inicio.jpg","assets/martes_03_remo_con_mancuerna_movimiento.jpg"],
- "Curl de bíceps con barra":["assets/martes_04_curl_biceps_con_barra_inicio.jpg","assets/martes_04_curl_biceps_con_barra_movimiento.jpg"],
- "Curl de bíceps alterno":["assets/martes_05_curl_biceps_alterno_inicio.jpg","assets/martes_05_curl_biceps_alterno_movimiento.jpg"],
- "Peso muerto rumano":["assets/miercoles_02_peso_muerto_rumano_inicio.jpg","assets/miercoles_02_peso_muerto_rumano_movimiento.jpg"],
- "Patada de glúteo":["assets/miercoles_03_patada_de_gluteo_inicio.jpg","assets/miercoles_03_patada_de_gluteo_movimiento.jpg"],
- "Abducción de cadera":["assets/miercoles_04_abduccion_de_cadera_inicio.jpg","assets/miercoles_04_abduccion_de_cadera_movimiento.jpg"],
- "Pull through":["assets/miercoles_05_pull_through_inicio.jpg","assets/miercoles_05_pull_through_movimiento.jpg"],
- "Press de banca":["assets/jueves_01_press_de_banca_inicio.jpg","assets/jueves_01_press_de_banca_movimiento.jpg"],
- "Press inclinado con mancuernas":["assets/jueves_02_press_inclinado_mancuernas_inicio.jpg","assets/jueves_02_press_inclinado_mancuernas_movimiento.jpg"],
- "Aperturas en máquina":["assets/jueves_03_aperturas_en_maquina_inicio.jpg","assets/jueves_03_aperturas_en_maquina_movimiento.jpg"],
- "Extensión de tríceps en polea":["assets/jueves_04_extension_triceps_polea_inicio.jpg","assets/jueves_04_extension_triceps_polea_movimiento.jpg"],
- "Fondos en máquina":["assets/jueves_05_fondos_en_maquina_inicio.jpg","assets/jueves_05_fondos_en_maquina_movimiento.jpg"],
- "Sentadilla goblet":["assets/viernes_01_sentadilla_goblet_inicio.jpg","assets/viernes_01_sentadilla_goblet_movimiento.jpg"],
- "Peso muerto con mancuernas":["assets/viernes_02_peso_muerto_mancuernas_inicio.jpg","assets/viernes_02_peso_muerto_mancuernas_movimiento.jpg"],
- "Remo en TRX":["assets/viernes_03_remo_trx_inicio.jpg","assets/viernes_03_remo_trx_movimiento.jpg"],
- "Press militar":["assets/viernes_04_press_militar_inicio.jpg","assets/viernes_04_press_militar_movimiento.jpg"],
- "Plancha":["assets/viernes_05_plancha_inicio.jpg","assets/viernes_05_plancha_movimiento.jpg"]
-};
-const guideFullImageFiles={
- "Pull through":"assets/miercoles_05_pull_through_guia.jpg",
- "Press de banca":"assets/jueves_01_press_de_banca_guia.jpg",
- "Press inclinado con mancuernas":"assets/jueves_02_press_inclinado_guia.jpg",
- "Aperturas en máquina":"assets/jueves_03_aperturas_maquina_guia.jpg",
- "Extensión de tríceps en polea":"assets/jueves_04_extension_triceps_guia.jpg",
- "Fondos en máquina":"assets/jueves_05_fondos_maquina_guia.jpg",
- "Sentadilla goblet":"assets/viernes_01_sentadilla_goblet_guia.jpg",
- "Peso muerto con mancuernas":"assets/viernes_02_peso_muerto_mancuernas_guia.jpg",
- "Remo en TRX":"assets/viernes_03_remo_trx_guia.jpg",
- "Press militar":"assets/viernes_04_press_militar_guia.jpg",
- "Plancha":"assets/viernes_05_plancha_guia.jpg"
-};
-function openGuide(name){
- const g=exerciseGuides[name]||{muscles:"Músculos principales según la variante",steps:["Colócate de forma estable y ajusta el material.","Realiza el movimiento de forma controlada, sin rebotes.","Vuelve lentamente a la posición inicial."],tip:"Empieza con una carga que controles y evita cualquier movimiento doloroso."};
- document.getElementById("guideTitle").textContent=name;
- document.getElementById("guideMuscles").textContent=g.muscles;
- document.getElementById("guideDescription").innerHTML=`<ol class="guide-steps">${g.steps.map(x=>`<li>${esc(x)}</li>`).join("")}</ol>`;
- document.getElementById("guideTip").innerHTML=`<b>✓ Consejos</b><p> ${esc(g.tip)}</p>`;
- document.getElementById("guideErrors").innerHTML="<b>✕ Errores frecuentes</b><ul><li>Usar demasiado peso.</li><li>Hacer el movimiento con impulso.</li><li>Perder la postura o el control.</li></ul>";
- const full=document.getElementById("guideFullImage");
- const photoGrid=document.querySelector(".guide-photo-grid");
- const photoNote=document.querySelector(".guide-photo-note");
- const fullFile=guideFullImageFiles[name];
- const imgs=guideImageFiles[name]||[];
- if(fullFile){
-   full.src=fullFile;full.style.display="block";photoGrid.style.display="none";photoNote.style.display="none";
- }else{
-   full.removeAttribute("src");full.style.display="none";photoGrid.style.display="grid";photoNote.style.display="block";
-   ["Start","Move"].forEach((suffix,i)=>{
-     const img=document.getElementById("guideImage"+suffix);
-     const empty=document.getElementById("guideEmpty"+suffix);
-     if(imgs[i]){img.src=imgs[i];img.style.display="block";empty.style.display="none";}
-     else{img.removeAttribute("src");img.style.display="none";empty.style.display="flex";}
-   });
- }
- document.getElementById("guideOverlay").classList.add("open");
+function guideIllustration(name){
+ const n=name.toLowerCase();
+ let kind='squat', label='Flexiona y vuelve con control';
+ if(/peso muerto|rumano/.test(n)){kind='hinge';label='Lleva la cadera atrás y vuelve a erguirte'}
+ else if(/plancha/.test(n)){kind='plank';label='Mantén el cuerpo alineado'}
+ else if(/jalón|remo|curl de bíceps|curl martillo|tríceps/.test(n)){kind='pull';label='Acerca el agarre sin balancear el cuerpo'}
+ else if(/press|aperturas|extensión de tríceps/.test(n)){kind='push';label='Empuja o abre sin arquear la espalda'}
+ else if(/abduct|patada de glúteo/.test(n)){kind='side';label='Mueve la pierna sin girar la pelvis'}
+ else if(/hip thrust|puente/.test(n)){kind='bridge';label='Eleva la cadera apretando los glúteos'}
+ const person=(x,pose)=>{
+  if(kind==='plank') return `<g transform="translate(${x},0)" stroke="#9f5b74" stroke-width="9" stroke-linecap="round" fill="none"><circle cx="25" cy="78" r="10" fill="#bd8195" stroke="none"/><path d="M36 82 L92 88 L142 112 M60 86 L45 119 M82 87 L110 119"/><path d="M92 88 L137 83" stroke="#d9a8b8" stroke-width="3"/></g>`;
+  if(kind==='hinge') return `<g transform="translate(${x},0)" stroke="#9f5b74" stroke-width="9" stroke-linecap="round" fill="none"><circle cx="78" cy="${pose?31:24}" r="11" fill="#bd8195" stroke="none"/><path d="M${pose?82:78} ${pose?44:37} L${pose?62:78} ${pose?83:82} L${pose?40:65} 126 M${pose?62:78} ${pose?83:82} L${pose?82:65} 126 M${pose?72:78} ${pose?56:51} L${pose?42:54} ${pose?80:73} M${pose?72:78} ${pose?56:51} L${pose?104:102} ${pose?78:70}"/></g>`;
+  if(kind==='bridge') return `<g transform="translate(${x},0)" stroke="#9f5b74" stroke-width="9" stroke-linecap="round" fill="none"><circle cx="24" cy="${pose?78:91}" r="10" fill="#bd8195" stroke="none"/><path d="M35 ${pose?82:95} L${pose?82:78} ${pose?72:101} L${pose?119:112} 124 M${pose?82:78} ${pose?72:101} L${pose?145:140} 124 M${pose?66:60} ${pose?77:97} L${pose?55:54} 120"/></g>`;
+  if(kind==='side') return `<g transform="translate(${x},0)" stroke="#9f5b74" stroke-width="9" stroke-linecap="round" fill="none"><circle cx="75" cy="25" r="11" fill="#bd8195" stroke="none"/><path d="M75 38 L75 82 M75 51 L48 70 M75 51 L101 70 M75 82 L${pose?35:60} 124 M75 82 L${pose?125:94} 124"/></g>`;
+  if(kind==='pull'||kind==='push') return `<g transform="translate(${x},0)" stroke="#9f5b74" stroke-width="9" stroke-linecap="round" fill="none"><circle cx="75" cy="24" r="11" fill="#bd8195" stroke="none"/><path d="M75 37 L75 83 M75 49 L${pose?(kind==='pull'?54:35):45} ${pose?72:52} M75 49 L${pose?(kind==='pull'?96:115):105} ${pose?72:52} M75 83 L55 126 M75 83 L96 126"/><path d="M${kind==='pull'?45:30} 50 H${kind==='pull'?105:120}" stroke="#d9a8b8" stroke-width="4"/></g>`;
+  return `<g transform="translate(${x},0)" stroke="#9f5b74" stroke-width="9" stroke-linecap="round" fill="none"><circle cx="75" cy="24" r="11" fill="#bd8195" stroke="none"/><path d="M75 37 L75 ${pose?77:83} M75 49 L47 ${pose?70:54} M75 49 L103 ${pose?70:54} M75 ${pose?77:83} L${pose?48:56} 124 M75 ${pose?77:83} L${pose?102:94} 124"/></g>`;
+ };
+ return `<svg viewBox="0 0 340 150" role="img" aria-label="Dos posiciones ilustradas del ejercicio ${esc(name)}" style="width:100%;height:150px;max-width:340px"><text x="85" y="14" text-anchor="middle" font-size="10" fill="#8b7d83">INICIO</text><text x="255" y="14" text-anchor="middle" font-size="10" fill="#8b7d83">MOVIMIENTO</text>${person(8,0)}${person(178,1)}<path d="M145 76 H185 M178 69 L185 76 L178 83" stroke="#bd8195" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/><text x="170" y="145" text-anchor="middle" font-size="9" fill="#8b7d83">${label}</text></svg>`;
 }
+function openGuide(name){const g=exerciseGuides[name]||{muscles:"Músculos según la variante",steps:["Colócate de forma estable y ajusta la máquina o el material.","Realiza el movimiento lentamente, sin rebotes y con un recorrido cómodo.","Vuelve a la posición inicial controlando el peso."],tip:"Empieza con poco peso y pide ayuda al personal del gimnasio si no tienes clara la colocación."};document.getElementById("guideTitle").textContent=name;document.getElementById("guideIllustration").innerHTML=guideIllustration(name);document.getElementById("guideDescription").innerHTML=`<p class="small muted"><b>Trabaja:</b> ${esc(g.muscles)}</p><b>Cómo hacerlo</b><ol class="guide-steps">${g.steps.map(x=>`<li>${esc(x)}</li>`).join("")}</ol><div class="guide-tip"><b>💡 Consejo:</b> ${esc(g.tip)}</div>`;document.getElementById("guideVideo").href="https://www.youtube.com/results?search_query="+encodeURIComponent(name+" técnica correcta gimnasio demostración");document.getElementById("guideOverlay").classList.add("open")}
 document.getElementById("closeGuide").onclick=()=>document.getElementById("guideOverlay").classList.remove("open");document.getElementById("guideDone").onclick=()=>document.getElementById("guideOverlay").classList.remove("open");document.getElementById("guideOverlay").onclick=e=>{if(e.target.id==="guideOverlay")e.currentTarget.classList.remove("open")};
-function renderSession(){const done=session.filter(e=>e.done).length,pct=session.length?Math.round(done/session.length*100):0;document.getElementById("sessionProgress").textContent=pct+"%";document.getElementById("sessionBar").style.width=pct+"%";document.getElementById("exerciseList").innerHTML=session.length?session.map((e,i)=>`<div class="exercise"><div class="between"><div style="flex:1"><h3 style="display:inline">${i+1}. ${esc(e.name)}</h3><button class="guidebtn" data-guide="${i}">☷ Cómo se hace</button></div><input class="check" type="checkbox" data-done="${i}" ${e.done?"checked":""} aria-label="Completado"></div><img class="exercise-pair" src="assets/exercises/${currentDay.id}_${String(i+1).padStart(2,"0")}.jpg" alt="Posición inicial y final de ${esc(e.name)}" loading="lazy"><div class="fields"><label>Series<input type="number" min="1" data-field="sets" data-i="${i}" value="${e.sets}"></label><label>Repeticiones<input type="number" min="1" data-field="reps" data-i="${i}" value="${e.reps}"></label><label>Peso (kg)<input type="number" min="0" step=".5" data-field="weight" data-i="${i}" value="${e.weight}" placeholder="—"></label></div></div>`).join(""):`<div class="empty">Añade tu primer ejercicio.</div>`;
+function renderSession(){const done=session.filter(e=>e.done).length,pct=session.length?Math.round(done/session.length*100):0;document.getElementById("sessionProgress").textContent=pct+"%";document.getElementById("sessionBar").style.width=pct+"%";document.getElementById("exerciseList").innerHTML=session.length?session.map((e,i)=>`<div class="exercise"><div class="between"><div style="flex:1"><h3 style="display:inline">${i+1}. ${esc(e.name)}</h3><button class="guidebtn" data-guide="${i}">▶ Cómo se hace</button></div><input class="check" type="checkbox" data-done="${i}" ${e.done?"checked":""} aria-label="Completado"></div><div class="fields"><label>Series<input type="number" min="1" data-field="sets" data-i="${i}" value="${e.sets}"></label><label>Repeticiones<input type="number" min="1" data-field="reps" data-i="${i}" value="${e.reps}"></label><label>Peso (kg)<input type="number" min="0" step=".5" data-field="weight" data-i="${i}" value="${e.weight}" placeholder="—"></label></div></div>`).join(""):`<div class="empty">Añade tu primer ejercicio.</div>`;
 document.querySelectorAll("[data-guide]").forEach(x=>x.onclick=()=>openGuide(session[+x.dataset.guide].name));document.querySelectorAll("[data-done]").forEach(x=>x.onchange=()=>{session[+x.dataset.done].done=x.checked;renderSession()});document.querySelectorAll("[data-field]").forEach(x=>x.onchange=()=>session[+x.dataset.i][x.dataset.field]=x.value)}
 document.getElementById("addExercise").onclick=()=>{let n=prompt("Nombre del ejercicio:");if(n&&n.trim()){session.push({name:n.trim(),sets:3,reps:12,weight:"",done:false});renderSession()}};
 document.getElementById("finishWorkout").onclick=()=>{if(!currentDay)return;data.logs.push({date:dateKey(),dayId:currentDay.id,dayName:currentDay.name+" · "+currentDay.focus,exercises:session});save();alert("¡Entrenamiento guardado! 💗");show("home")};
 document.getElementById("backDays").onclick=()=>show("workouts");
 document.getElementById("editRoutines").onclick=()=>{let d=data.days.map((x,i)=>`${i+1}. ${x.name}: ${x.focus}`).join("\n");let choice=prompt("Escribe el número del día que quieres editar:\n"+d);let idx=Number(choice)-1;if(idx<0||idx>=data.days.length||!choice)return;let day=data.days[idx];let focus=prompt("Enfoque del día:",day.focus);if(focus===null)return;let exercises=prompt("Ejercicios separados por comas:",day.exercises.join(", "));if(exercises===null)return;day.focus=focus;day.exercises=exercises.split(",").map(s=>s.trim()).filter(Boolean);save();renderDays()};
-function renderProgress(){document.getElementById("weightHistory").innerHTML=data.weights.length?`<table><tr><th>Fecha</th><th>Peso</th></tr>${data.weights.slice().reverse().map(w=>`<tr><td>${w.date}</td><td>${w.value} kg</td></tr>`).join("")}</table>`:`<p class="small muted">Aún no hay registros de peso.</p>`;document.getElementById("photoGallery").innerHTML=data.photos.length?data.photos.slice().reverse().map(p=>`<div class="card"><div class="between"><b>${p.date}</b><button class="btn ghost" data-delphoto="${p.id}">Eliminar</button></div><img class="photo" src="${p.src}" alt="Foto de progreso"></div>`).join(""):`<div class="empty">Tus fotos aparecerán aquí.</div>`;document.querySelectorAll("[data-delphoto]").forEach(b=>b.onclick=()=>{if(confirm("¿Eliminar esta foto?")){data.photos=data.photos.filter(p=>p.id!==b.dataset.delphoto);save();renderProgress()}});let done=data.logs.reduce((n,l)=>n+l.exercises.filter(e=>e.done).length,0);document.getElementById("statsSummary").innerHTML=data.logs.length?`<p><b>${data.logs.length}</b> entrenamientos guardados</p><p><b>${done}</b> ejercicios completados</p>`:`Cuando registres sesiones aparecerán aquí tus estadísticas.`}
+async function renderProgress(){document.getElementById("weightHistory").innerHTML=data.weights.length?`<table><tr><th>Fecha</th><th>Peso</th></tr>${data.weights.slice().reverse().map(w=>`<tr><td>${w.date}</td><td>${w.value} kg</td></tr>`).join("")}</table>`:`<p class="small muted">Aún no hay registros de peso.</p>`;const gallery=document.getElementById("photoGallery");const dates=[...new Set([document.getElementById("photoDate").value||dateKey(),...(data.photos||[]).map(p=>p.date)])].sort().reverse();gallery.innerHTML=dates.length?dates.map(date=>`<div class="photo-day"><b>${date}</b><div class="photo-slots">${[{id:"frente",label:"Frente"},{id:"lateral",label:"Lateral"},{id:"espalda",label:"Espalda"}].map(slot=>{const photo=data.photos.find(p=>p.date===date&&p.slot===slot.id);return `<div class="photo-slot" data-slot-wrap="${date}_${slot.id}"><div class="photo-preview" data-preview="${date}_${slot.id}"><div class="empty">${slot.label}</div></div><b>${slot.label}</b><label> ${photo?"Cambiar foto":"Añadir foto"}<input type="file" accept="image/*" data-photo-date="${date}" data-photo-slot="${slot.id}"></label>${photo?`<button class="btn ghost" style="width:100%;margin-top:6px;padding:6px" data-delphoto="${photo.id}">Eliminar</button>`:""}</div>`}).join("")}</div></div>`).join(""):`<div class="empty">Selecciona una fecha y añade tus fotos de frente, lateral y espalda.</div>`;for(const p of data.photos||[]){if(!p.slot)continue;try{const blob=await photoDBGet(p.id);if(blob){const el=document.querySelector(`[data-preview="${p.date}_${p.slot}"]`);if(el){const url=URL.createObjectURL(blob);el.innerHTML=`<img src="${url}" alt="Foto ${p.slot}">`}}}catch(e){console.warn(e)}}document.querySelectorAll("[data-photo-slot]").forEach(input=>input.onchange=async e=>{const f=e.target.files[0];if(!f)return;const date=e.target.dataset.photoDate,slot=e.target.dataset.photoSlot,id=`${date}_${slot}`;try{const blob=await compressPhoto(f);if(!blob)throw Error("No se pudo procesar la imagen");await photoDBPut(id,blob);const old=data.photos.find(p=>p.date===date&&p.slot===slot);if(!old)data.photos.push({id,date,slot});save();await renderProgress()}catch(err){alert("No se ha podido guardar la foto. Comprueba el espacio disponible del iPhone.")}e.target.value=""});document.querySelectorAll("[data-delphoto]").forEach(b=>b.onclick=async()=>{if(confirm("¿Eliminar esta foto?")){await photoDBDelete(b.dataset.delphoto);data.photos=data.photos.filter(p=>p.id!==b.dataset.delphoto);save();renderProgress()}});let done=data.logs.reduce((n,l)=>n+l.exercises.filter(e=>e.done).length,0);document.getElementById("statsSummary").innerHTML=data.logs.length?`<p><b>${data.logs.length}</b> entrenamientos guardados</p><p><b>${done}</b> ejercicios completados</p>`:`Cuando registres sesiones aparecerán aquí tus estadísticas.`}
 document.getElementById("saveWeight").onclick=()=>{let v=Number(document.getElementById("bodyWeight").value);if(!v||v<20||v>300){alert("Introduce un peso válido en kg.");return}data.weights.push({date:dateKey(),value:v});save();renderProgress();document.getElementById("bodyWeight").value=""};
-document.getElementById("progressPhoto").onchange=async e=>{let f=e.target.files[0];if(!f)return;if(f.size>5*1024*1024){alert("Elige una foto de menos de 5 MB para no llenar el almacenamiento.");e.target.value="";return}let reader=new FileReader();reader.onload=()=>{data.photos.push({id:crypto.randomUUID(),date:dateKey(),src:reader.result});try{save();renderProgress()}catch(err){alert("No hay espacio suficiente. Exporta tus datos o elimina fotos antiguas.")}};reader.readAsDataURL(f);e.target.value=""};
+document.getElementById("photoDate").value=dateKey();document.getElementById("photoDate").onchange=()=>renderProgress();
 document.getElementById("saveName").onclick=()=>{data.userName=document.getElementById("userName").value.trim();save();alert("Guardado 💗")};
-document.getElementById("exportData").onclick=()=>{let blob=new Blob([JSON.stringify(data)],{type:"application/json"}),a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="my-gym-copia.json";a.click();URL.revokeObjectURL(a.href)};
-document.getElementById("importData").onchange=e=>{let f=e.target.files[0];if(!f)return;let r=new FileReader();r.onload=()=>{try{let d=JSON.parse(r.result);if(!d.days||!d.logs)throw 0;data=d;save();alert("Copia importada correctamente.");location.reload()}catch(err){alert("El archivo no parece una copia válida de My Gym.")}};r.readAsText(f)};
+async function blobToDataURL(blob){return new Promise((resolve,reject)=>{const r=new FileReader();r.onload=()=>resolve(r.result);r.onerror=()=>reject(r.error);r.readAsDataURL(blob)})}
+function dataURLToBlob(url){return fetch(url).then(r=>r.blob())}
+document.getElementById("exportData").onclick=async()=>{try{const backup=JSON.parse(JSON.stringify(data));for(const p of backup.photos||[]){if(!p.src){const blob=await photoDBGet(p.id);if(blob)p.src=await blobToDataURL(blob)}}const blob=new Blob([JSON.stringify(backup)],{type:"application/json"}),a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="my-gym-copia.json";a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000)}catch(e){alert("No se ha podido preparar la copia. Inténtalo de nuevo.")}};
+document.getElementById("importData").onchange=e=>{let f=e.target.files[0];if(!f)return;let r=new FileReader();r.onload=async()=>{try{let d=JSON.parse(r.result);if(!d.days||!d.logs)throw 0;for(const p of d.photos||[]){if(p.src){const blob=await dataURLToBlob(p.src);p.slot=p.slot||"frente";p.id=p.id||`${p.date}_${p.slot}`;await photoDBPut(p.id,blob);delete p.src}}data=d;save();alert("Copia importada correctamente.");location.reload()}catch(err){alert("El archivo no parece una copia válida de My Gym.")}};r.readAsText(f)};
 document.getElementById("resetData").onclick=()=>{if(confirm("¿Seguro? Se borrarán todos tus entrenamientos, fotos y registros de este dispositivo.")){localStorage.removeItem(KEY);data=load();location.reload()}};
 document.querySelectorAll(".navbtn").forEach(b=>b.onclick=()=>show(b.dataset.view));
-document.getElementById("today").textContent=new Date().toLocaleDateString("es-ES",{weekday:"short",day:"numeric",month:"short"});document.getElementById("userName").value=data.userName||"";renderHome();renderDays();
+document.getElementById("today").textContent=new Date().toLocaleDateString("es-ES",{weekday:"short",day:"numeric",month:"short"});document.getElementById("userName").value=data.userName||"";migrateLegacyPhotos().catch(console.warn);renderHome();renderDays();
 if("serviceWorker" in navigator && location.protocol.startsWith("http"))navigator.serviceWorker.register("./sw.js").catch(()=>{});
 </script>
 </body></html>
