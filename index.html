@@ -21,41 +21,13 @@ main{padding:18px 16px}.view{display:none}.view.active{display:block}.hello{font
 nav{position:fixed;bottom:0;left:0;right:0;background:#fffdfdF2;backdrop-filter:blur(12px);border-top:1px solid var(--line);display:flex;justify-content:center;z-index:10;padding:8px max(8px,env(safe-area-inset-right)) calc(8px + env(safe-area-inset-bottom))}.navinner{width:min(760px,100%);display:grid;grid-template-columns:repeat(4,1fr);gap:4px}.navbtn{border:0;background:transparent;color:var(--muted);padding:7px 2px;border-radius:12px;font-size:11px}.navbtn span{display:block;font-size:19px;margin-bottom:2px}.navbtn.active{color:var(--rose);background:var(--pink2);font-weight:800}
 .btn{border:0;border-radius:13px;padding:11px 15px;background:var(--rose);color:white;font-weight:750}.btn.secondary{background:var(--pink2);color:var(--rose)}.btn.ghost{background:white;color:var(--rose);border:1px solid var(--line)}.btn.full{width:100%}.row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}.between{display:flex;justify-content:space-between;align-items:center;gap:10px}
 .exercise{padding:13px 0;border-bottom:1px solid #f4e9ed}.exercise:last-child{border:0}.exercise h3{font-size:14px;margin:0 0 8px}.fields{display:grid;grid-template-columns:repeat(3,1fr);gap:7px}.fields label,.fieldlabel{font-size:10px;color:var(--muted);display:block}.fields input,.input{width:100%;border:1px solid var(--line);background:#fffafb;border-radius:10px;padding:9px;margin-top:4px;color:var(--ink);min-width:0}.check{accent-color:var(--rose);width:18px;height:18px}.progress{height:8px;background:#f6e8ed;border-radius:20px;overflow:hidden}.progress i{display:block;height:100%;background:var(--rose);width:0}
-.photo{width:100%;max-height:330px;object-fit:cover;border-radius:14px;margin-top:10px}.empty{padding:24px;text-align:center;color:var(--muted);font-size:13px}
+.exercise-pair{width:100%;height:auto;display:block;object-fit:contain;background:#fff;border:1px solid var(--line);border-radius:14px;margin:9px 0 12px}.photo{width:100%;max-height:330px;object-fit:cover;border-radius:14px;margin-top:10px}.day-poster{width:100%;height:auto;display:block;object-fit:contain;border:1px solid var(--line);border-radius:16px;margin:12px 0 16px;background:white}.empty{padding:24px;text-align:center;color:var(--muted);font-size:13px}
 .tabs{display:flex;gap:7px;overflow:auto;padding:2px 0 10px}.pill{white-space:nowrap;border:1px solid var(--line);background:white;border-radius:30px;padding:8px 12px;color:var(--muted);font-size:12px}.pill.active{background:var(--pink2);color:var(--rose);border-color:var(--pink)}
 table{width:100%;border-collapse:collapse;font-size:12px}td,th{text-align:left;padding:9px 5px;border-bottom:1px solid var(--line)}th{color:var(--muted);font-weight:600}
 input[type=file]{font-size:12px;max-width:100%}
 .note{background:#fff5f7;color:#80616d;padding:12px;border-radius:13px;font-size:12px;line-height:1.5}
-.guidebtn{border:1px solid var(--line);background:#fff5f8;color:var(--rose);border-radius:20px;padding:6px 10px;font-size:11px;font-weight:750;margin:0 0 8px 6px}.guide-overlay{position:fixed;inset:0;background:#24182099;z-index:30;display:none;align-items:flex-end;justify-content:center;padding:12px}.guide-overlay.open{display:flex}.guide-panel{background:#fffafb;width:min(650px,100%);max-height:90vh;overflow:auto;border-radius:24px;padding:18px;box-shadow:0 15px 50px #24182044}.guide-visual{background:linear-gradient(135deg,#f8e5eb,#fff7f9);border-radius:18px;padding:12px;margin:12px 0;text-align:center}.guide-video-frame{width:100%;aspect-ratio:16/9;background:#241820;border-radius:14px;overflow:hidden}.guide-video-frame video{width:100%;height:100%;object-fit:contain}.guide-video-fallback{padding:22px;color:#80616d;font-size:13px;line-height:1.5}.guide-steps{padding-left:20px;font-size:13px;line-height:1.6}.guide-steps li{margin:7px 0}.guide-tip{background:#f7edf1;border-radius:13px;padding:12px;font-size:12px;line-height:1.5;margin:10px 0}.guide-actions{display:flex;gap:8px;flex-wrap:wrap}.guide-actions a{display:inline-block;text-decoration:none}.guide-close{border:0;background:#f7e8ed;color:var(--rose);border-radius:12px;padding:9px 12px;font-weight:750}
-
-/* MY GYM · guía visual renovada */
-.guide-overlay{align-items:center;padding:10px}
-.guide-panel{width:min(720px,100%);max-height:92dvh;padding:20px 18px 18px;border-radius:26px}
-.guide-panel>.between{position:sticky;top:-20px;z-index:2;background:#fffafb;padding:4px 0 12px;margin:-4px 0 0}
-.guide-visual{padding:14px;margin:8px 0 14px;text-align:left}
-.guide-photo-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;align-items:start}
-.guide-photo-card{min-width:0;display:flex;flex-direction:column;gap:8px}
-.guide-photo-label{display:block;text-align:center;font-size:13px;font-weight:850;color:#8f5269;line-height:1.25;min-height:34px;display:flex;align-items:center;justify-content:center}
-.guide-photo-card img{display:none;width:100%;height:clamp(170px,42vw,290px);object-fit:contain;object-position:center;background:#fff;border:1px solid #f0dce3;border-radius:14px;padding:3px}
-.guide-photo-empty{display:none;min-height:170px;align-items:center;justify-content:center;text-align:center;background:#fff;border:1px dashed #dfbdc9;border-radius:14px;padding:12px;color:#8b7d83;font-size:12px}
-.guide-photo-note{display:flex;align-items:center;justify-content:center;gap:8px;margin:12px 0 0;text-align:center;color:#8f5269;font-size:12px;font-weight:750}
-.guide-photo-note:before{content:'←';font-size:20px}.guide-photo-note:after{content:'→';font-size:20px}
-.guide-muscle-card{background:#fff;border:1px solid #f0dce3;border-radius:16px;padding:13px 14px;margin:12px 0}
-.guide-muscle-card>b{display:block;font-size:14px;margin-bottom:9px}
-#guideMuscles{display:flex;flex-wrap:wrap;gap:7px}
-.muscle-chip{display:inline-flex;align-items:center;gap:5px;background:#f8e9ee;color:#874d64;border-radius:30px;padding:7px 10px;font-size:12px;font-weight:750}
-.guide-columns{display:grid;grid-template-columns:1fr;gap:4px}
-.guide-columns h3{font-size:18px;margin:16px 0 8px}
-.guide-steps{font-size:14px;line-height:1.65;padding-left:22px;margin:0}
-.guide-steps li{padding-left:4px;margin:9px 0}
-.guide-tip{font-size:13px;line-height:1.6;padding:15px;margin:12px 0}
-.guide-tip p{margin:8px 0 0}
-.guide-errors{background:#fff5f7;border:1px solid #f0dce3;border-radius:15px;padding:14px;font-size:13px;line-height:1.55;margin:12px 0}
-.guide-errors ul{margin:8px 0 0;padding-left:20px}
-#guideDone{margin-top:8px}
-@media(min-width:560px){.guide-columns{grid-template-columns:1.1fr .9fr;gap:16px}.guide-photo-card img{height:280px}}
-@media(max-width:380px){.guide-panel{padding:16px 12px}.guide-visual{padding:9px}.guide-photo-grid{gap:7px}.guide-photo-card img{height:155px}.guide-photo-label{font-size:11px}}
-
+.guidebtn{border:1px solid var(--line);background:#fff5f8;color:var(--rose);border-radius:20px;padding:6px 10px;font-size:11px;font-weight:750;margin:0 0 8px 6px}.guide-overlay{position:fixed;inset:0;background:#24182099;z-index:30;display:none;align-items:flex-end;justify-content:center;padding:12px}.guide-overlay.open{display:flex}.guide-panel{background:#fffafb;width:min(650px,100%);max-height:90vh;overflow:auto;border-radius:24px;padding:18px;box-shadow:0 15px 50px #24182044}.guide-visual{display:none!important;background:linear-gradient(135deg,#f8e5eb,#fff7f9);border-radius:18px;padding:12px;margin:12px 0;text-align:center}.guide-video-frame{width:100%;aspect-ratio:16/9;background:#241820;border-radius:14px;overflow:hidden}.guide-video-frame video{width:100%;height:100%;object-fit:contain}.guide-video-fallback{padding:22px;color:#80616d;font-size:13px;line-height:1.5}.guide-steps{padding-left:20px;font-size:13px;line-height:1.6}.guide-steps li{margin:7px 0}.guide-tip{background:#f7edf1;border-radius:13px;padding:12px;font-size:12px;line-height:1.5;margin:10px 0}.guide-actions{display:flex;gap:8px;flex-wrap:wrap}.guide-actions a{display:inline-block;text-decoration:none}.guide-close{border:0;background:#f7e8ed;color:var(--rose);border-radius:12px;padding:9px 12px;font-weight:750}
+.guide-full-image{width:100%;height:auto;max-height:72vh;object-fit:contain;border-radius:14px;background:#fff;display:block;margin:0 auto}.guide-photo-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.guide-photo-card img{width:100%;height:auto;max-height:260px;object-fit:contain;border-radius:12px;background:#fff}
 footer{text-align:center;color:#b19da5;font-size:10px;padding:16px}
 @media(min-width:600px){main{padding:24px}.grid{grid-template-columns:repeat(4,1fr)}}
 </style>
@@ -81,7 +53,7 @@ footer{text-align:center;color:#b19da5;font-size:10px;padding:16px}
 </section>
 <section id="session" class="view">
   <div class="between"><button class="btn ghost" id="backDays">← Días</button><span class="date" id="sessionDate"></span></div>
-  <h2 class="hello" id="sessionTitle">Entrenamiento</h2><p class="muted small" id="sessionSubtitle"></p>
+  <h2 class="hello" id="sessionTitle">Entrenamiento</h2><p class="muted small" id="sessionSubtitle"></p><img id="dayPoster" class="day-poster" alt="Guía visual de ejercicios del día" style="display:none">
   <div class="card"><div class="between"><b>Progreso de hoy</b><b id="sessionProgress">0%</b></div><div class="progress" style="margin-top:10px"><i id="sessionBar"></i></div></div>
   <div id="exerciseList" class="card"></div>
   <div class="row"><button class="btn" id="addExercise">+ Añadir ejercicio</button><button class="btn secondary" id="finishWorkout">Guardar entrenamiento</button></div>
@@ -108,13 +80,14 @@ footer{text-align:center;color:#b19da5;font-size:10px;padding:16px}
     <button class="guide-close" id="closeGuide">Cerrar ✕</button>
   </div>
   <div class="guide-visual">
+    <img id="guideFullImage" class="guide-full-image" alt="Ficha visual completa del ejercicio" style="display:none">
     <div class="guide-photo-grid">
       <div class="guide-photo-card"><span class="guide-photo-label">1 · Posición inicial</span><img id="guideImageStart" alt="Posición inicial del ejercicio"><div class="guide-photo-empty" id="guideEmptyStart">Imagen de posición inicial pendiente</div></div>
       <div class="guide-photo-card"><span class="guide-photo-label">2 · Movimiento</span><img id="guideImageMove" alt="Movimiento del ejercicio"><div class="guide-photo-empty" id="guideEmptyMove">Imagen del movimiento pendiente</div></div>
     </div>
-    <div class="guide-photo-note">Compara ambas posiciones y observa el recorrido</div>
+    <div class="guide-photo-note">Imágenes explicativas estáticas · compara la posición inicial y el movimiento</div>
   </div>
-  <div class="guide-muscle-card"><b>🎯 Músculos que trabajan</b><div id="guideMuscles"></div></div>
+  <div class="guide-muscle-card"><b>Músculos trabajados</b><div id="guideMuscles"></div></div>
   <div class="guide-columns">
     <div><h3>☷ Cómo hacerlo</h3><div id="guideDescription"></div></div>
     <div><div class="guide-tip" id="guideTip"></div><div class="guide-errors" id="guideErrors"></div></div>
@@ -131,18 +104,18 @@ footer{text-align:center;color:#b19da5;font-size:10px;padding:16px}
 </div>
 <script>
 const defaultDays=[
- {id:"mon",name:"Lunes",focus:"Piernas",icon:"🦵",exercises:["Prensa de piernas","Sentadilla","Extensión de cuádriceps","Curl femoral","Hip Thrust"]},
- {id:"tue",name:"Martes",focus:"Espalda y bíceps",icon:"💪",exercises:["Jalón al pecho","Remo sentado","Remo con mancuerna","Curl de bíceps con barra","Curl de bíceps alterno"]},
- {id:"wed",name:"Miércoles",focus:"Glúteos",icon:"🍑",exercises:["Hip Thrust","Peso muerto rumano","Patada de glúteo","Abducción de cadera","Pull through"]},
+ {id:"mon",name:"Lunes",focus:"Piernas",icon:"🦵",exercises:["Prensa de piernas","Zancada búlgara","Extensión de cuádriceps","Curl femoral sentado","Hip thrust"]},
+ {id:"tue",name:"Martes",focus:"Espalda y bíceps",icon:"💪",exercises:["Jalón al pecho","Remo en máquina","Remo con mancuerna","Curl de bíceps con mancuernas","Curl de bíceps en polea"]},
+ {id:"wed",name:"Miércoles",focus:"Glúteos",icon:"🍑",exercises:["Hip thrust","Patada de glúteo en polea","Abducción de cadera","Sentadilla búlgara","Peso muerto rumano"]},
  {id:"thu",name:"Jueves",focus:"Pecho y tríceps",icon:"🏋️",exercises:["Press de banca","Press inclinado con mancuernas","Aperturas en máquina","Extensión de tríceps en polea","Fondos en máquina"]},
- {id:"fri",name:"Viernes",focus:"Full body",icon:"✨",exercises:["Sentadilla goblet","Peso muerto con mancuernas","Remo en TRX","Press militar","Plancha"]}
+ {id:"fri",name:"Viernes",focus:"Full body",icon:"✨",exercises:["Sentadilla en multipower","Peso muerto rumano","Press de hombros","Remo en polea sentada","Plancha abdominal"]}
 ];
 const KEY="mygym_v1";
 let data=load(), currentDay=null, session=[];
 /* Actualiza solo la planificación de 5 días; conserva entrenamientos, pesos, fotos y nombre. */
-if(localStorage.getItem("mygym_routine_v2")!=="ok"){
+if(localStorage.getItem("mygym_routine_v3")!=="ok"){
  data.days=defaultDays.map(d=>({...d,exercises:[...d.exercises]}));
- localStorage.setItem("mygym_routine_v2","ok");
+ localStorage.setItem("mygym_routine_v3","ok");
  save();
 }
 function load(){try{return JSON.parse(localStorage.getItem(KEY))||{days:defaultDays,logs:[],weights:[],photos:[],userName:""}}catch(e){return {days:defaultDays,logs:[],weights:[],photos:[],userName:""}}}
@@ -154,7 +127,7 @@ function renderDays(){document.getElementById("workoutDays").innerHTML=data.days
 function renderHome(){const now=new Date(), monday=new Date(now);monday.setDate(now.getDate()-((now.getDay()+6)%7));const wk=data.logs.filter(l=>new Date(l.date+"T12:00:00")>=monday).length;document.getElementById("weekCount").textContent=wk;document.getElementById("totalCount").textContent=data.logs.length;document.getElementById("exerciseCount").textContent=data.logs.reduce((n,l)=>n+l.exercises.filter(e=>e.done).length,0);document.getElementById("photoCount").textContent=data.photos.length;
 document.getElementById("homeDays").innerHTML=data.days.map(d=>`<button class="day" data-home-day="${d.id}"><span class="bubble">${d.icon}</span><span><strong>${d.name} · ${esc(d.focus)}</strong><small>${d.exercises.length} ejercicios planificados</small></span><span class="arrow">›</span></button>`).join("");document.querySelectorAll("[data-home-day]").forEach(b=>b.onclick=()=>openSession(b.dataset.homeDay));
 let last=data.logs[data.logs.length-1];document.getElementById("lastWorkout").innerHTML=last?`<b>${esc(last.dayName)}</b><p class="small muted">${last.date} · ${last.exercises.filter(e=>e.done).length} ejercicios completados</p>`:`<div class="empty">Todavía no has registrado ningún entrenamiento. ¡Vamos a por el primero!</div>`}
-function openSession(id){currentDay=data.days.find(d=>d.id===id);session=currentDay.exercises.map(name=>({name,sets:3,reps:12,weight:"",done:false}));document.getElementById("sessionTitle").textContent=currentDay.name+" · "+currentDay.focus;document.getElementById("sessionSubtitle").textContent="Marca cada ejercicio y apunta tus resultados.";document.getElementById("sessionDate").textContent=new Date().toLocaleDateString("es-ES");renderSession();show("session")}
+function openSession(id){currentDay=data.days.find(d=>d.id===id);session=currentDay.exercises.map(name=>({name,sets:3,reps:12,weight:"",done:false}));document.getElementById("sessionTitle").textContent=currentDay.name+" · "+currentDay.focus;document.getElementById("sessionSubtitle").textContent="Guía visual y registro de tu entrenamiento.";const poster=document.getElementById("dayPoster");poster.removeAttribute("src");poster.style.display="none";document.getElementById("sessionDate").textContent=new Date().toLocaleDateString("es-ES");renderSession();show("session")}
 const exerciseGuides={
 "Prensa de piernas":{muscles:"Cuádriceps y glúteos",steps:["Ajusta el respaldo y coloca los pies a la anchura de las caderas, apoyados en la plataforma.","Desbloquea el seguro y baja despacio hasta donde puedas sin que la pelvis se despegue del respaldo.","Empuja la plataforma con todo el pie, sin bloquear las rodillas al final."],tip:"Mantén las rodillas alineadas con los pies. No dejes que se metan hacia dentro."},
 "Sentadilla":{muscles:"Cuádriceps y glúteos",steps:["Coloca los pies aproximadamente a la anchura de los hombros.","Lleva la cadera atrás y flexiona las rodillas mientras bajas con el pecho abierto.","Empuja el suelo para subir, manteniendo las rodillas alineadas con los pies."],tip:"Baja solo hasta donde mantengas la espalda estable y los talones apoyados."},
@@ -179,6 +152,18 @@ const exerciseGuides={
 "Plancha":{muscles:"Abdomen y estabilidad del tronco",steps:["Apoya antebrazos y puntas de los pies, con codos debajo de los hombros.","Forma una línea recta desde la cabeza hasta los talones.","Aprieta abdomen y glúteos y respira con normalidad mientras mantienes la posición."],tip:"Si la cadera se hunde o sube demasiado, apoya las rodillas y mantén una versión más sencilla."}
 };
 
+
+
+exerciseGuides["Zancada búlgara"]={muscles:"Glúteos y cuádriceps",steps:["Colócate de espaldas a un banco y apoya el empeine del pie trasero sobre él.","Da un paso suficiente hacia delante y baja flexionando ambas rodillas, manteniendo el tronco estable.","Empuja con el pie delantero para volver arriba y completa las repeticiones antes de cambiar de pierna."],tip:"Mantén la rodilla delantera alineada con el pie y usa apoyo si necesitas equilibrio."};
+exerciseGuides["Remo en máquina"]={muscles:"Espalda media y bíceps",steps:["Ajusta el asiento y apoya el pecho o los pies según la máquina.","Lleva los codos hacia atrás acercando el agarre al torso.","Vuelve lentamente hasta extender los brazos sin encorvar la espalda."],tip:"Evita impulsarte con el tronco; controla la vuelta."};
+exerciseGuides["Curl de bíceps con mancuernas"]={muscles:"Bíceps",steps:["Colócate de pie con una mancuerna en cada mano y los brazos extendidos.","Flexiona los codos y sube las mancuernas sin balancear el cuerpo.","Baja lentamente hasta casi extender los codos."],tip:"Mantén los codos cerca del cuerpo y las muñecas rectas."};
+exerciseGuides["Curl de bíceps en polea"]={muscles:"Bíceps",steps:["Colócate frente a la polea baja y sujeta la barra o el agarre.","Con los codos pegados al cuerpo, flexiónalos para llevar el agarre hacia los hombros.","Baja de forma controlada sin dejar que el peso te arrastre."],tip:"No muevas los hombros ni arquees la espalda."};
+exerciseGuides["Patada de glúteo en polea"]={muscles:"Glúteo mayor",steps:["Coloca el tobillo en la tobillera de la polea baja y sujétate a la estructura.","Lleva la pierna hacia atrás manteniendo la pelvis estable.","Regresa despacio sin apoyar completamente el peso entre repeticiones."],tip:"Evita arquear la zona lumbar para ganar recorrido."};
+exerciseGuides["Sentadilla búlgara"]={muscles:"Glúteos y cuádriceps",steps:["Coloca el empeine del pie trasero sobre un banco y adelanta el pie delantero.","Baja flexionando la rodilla delantera con el tronco estable.","Empuja el suelo con el pie delantero para volver a subir."],tip:"Ajusta la distancia para que puedas bajar sin perder el equilibrio."};
+exerciseGuides["Sentadilla en multipower"]={muscles:"Cuádriceps y glúteos",steps:["Coloca la barra sobre la parte alta de la espalda y sitúa los pies de forma estable.","Desbloquea la barra, flexiona cadera y rodillas y baja con control.","Empuja el suelo para volver arriba sin bloquear bruscamente las rodillas."],tip:"Mantén las rodillas alineadas con los pies y usa un recorrido cómodo."};
+exerciseGuides["Press de hombros"]={muscles:"Hombros y tríceps",steps:["Siéntate con la espalda apoyada y las mancuernas a la altura de los hombros.","Empuja las mancuernas hacia arriba siguiendo una trayectoria controlada.","Baja lentamente hasta la posición inicial."],tip:"No arquees la zona lumbar ni encojas los hombros."};
+exerciseGuides["Remo en polea sentada"]={muscles:"Espalda media y bíceps",steps:["Siéntate frente a la polea con los pies apoyados y la espalda neutra.","Lleva el agarre hacia el abdomen acercando los codos al cuerpo.","Extiende los brazos despacio sin redondear la espalda."],tip:"Evita balancear el torso para mover más peso."};
+exerciseGuides["Plancha abdominal"]={muscles:"Abdomen y estabilidad del tronco",steps:["Apoya los antebrazos y las puntas de los pies con los codos debajo de los hombros.","Mantén una línea recta desde la cabeza hasta los talones.","Aprieta abdomen y glúteos y respira sin hundir la cadera."],tip:"Termina la serie si pierdes la postura; puedes apoyar las rodillas para adaptar la dificultad."};
 
 const guideImageFiles={
  "Prensa de piernas":["assets/lunes_01_prensa_de_piernas_inicio.jpg","assets/lunes_01_prensa_de_piernas_movimiento.jpg"],
@@ -206,27 +191,46 @@ const guideImageFiles={
  "Press militar":["assets/viernes_04_press_militar_inicio.jpg","assets/viernes_04_press_militar_movimiento.jpg"],
  "Plancha":["assets/viernes_05_plancha_inicio.jpg","assets/viernes_05_plancha_movimiento.jpg"]
 };
+const guideFullImageFiles={
+ "Pull through":"assets/miercoles_05_pull_through_guia.jpg",
+ "Press de banca":"assets/jueves_01_press_de_banca_guia.jpg",
+ "Press inclinado con mancuernas":"assets/jueves_02_press_inclinado_guia.jpg",
+ "Aperturas en máquina":"assets/jueves_03_aperturas_maquina_guia.jpg",
+ "Extensión de tríceps en polea":"assets/jueves_04_extension_triceps_guia.jpg",
+ "Fondos en máquina":"assets/jueves_05_fondos_maquina_guia.jpg",
+ "Sentadilla goblet":"assets/viernes_01_sentadilla_goblet_guia.jpg",
+ "Peso muerto con mancuernas":"assets/viernes_02_peso_muerto_mancuernas_guia.jpg",
+ "Remo en TRX":"assets/viernes_03_remo_trx_guia.jpg",
+ "Press militar":"assets/viernes_04_press_militar_guia.jpg",
+ "Plancha":"assets/viernes_05_plancha_guia.jpg"
+};
 function openGuide(name){
  const g=exerciseGuides[name]||{muscles:"Músculos principales según la variante",steps:["Colócate de forma estable y ajusta el material.","Realiza el movimiento de forma controlada, sin rebotes.","Vuelve lentamente a la posición inicial."],tip:"Empieza con una carga que controles y evita cualquier movimiento doloroso."};
  document.getElementById("guideTitle").textContent=name;
- document.getElementById("guideMuscles").innerHTML=g.muscles.split(/,| y /).map(m=>`<span class="muscle-chip">● ${esc(m.trim())}</span>`).join("");
+ document.getElementById("guideMuscles").textContent=g.muscles;
  document.getElementById("guideDescription").innerHTML=`<ol class="guide-steps">${g.steps.map(x=>`<li>${esc(x)}</li>`).join("")}</ol>`;
  document.getElementById("guideTip").innerHTML=`<b>✓ Consejos</b><p> ${esc(g.tip)}</p>`;
  document.getElementById("guideErrors").innerHTML="<b>✕ Errores frecuentes</b><ul><li>Usar demasiado peso.</li><li>Hacer el movimiento con impulso.</li><li>Perder la postura o el control.</li></ul>";
+ const full=document.getElementById("guideFullImage");
+ const photoGrid=document.querySelector(".guide-photo-grid");
+ const photoNote=document.querySelector(".guide-photo-note");
+ const fullFile=guideFullImageFiles[name];
  const imgs=guideImageFiles[name]||[];
- ["Start","Move"].forEach((suffix,i)=>{
-   const img=document.getElementById("guideImage"+suffix);
-   const empty=document.getElementById("guideEmpty"+suffix);
-   if(imgs[i]){
-     img.src=imgs[i];img.loading="lazy";img.style.display="block";empty.style.display="none";
-   }else{
-     img.removeAttribute("src");img.style.display="none";empty.style.display="flex";
-   }
- });
+ if(fullFile){
+   full.src=fullFile;full.style.display="block";photoGrid.style.display="none";photoNote.style.display="none";
+ }else{
+   full.removeAttribute("src");full.style.display="none";photoGrid.style.display="grid";photoNote.style.display="block";
+   ["Start","Move"].forEach((suffix,i)=>{
+     const img=document.getElementById("guideImage"+suffix);
+     const empty=document.getElementById("guideEmpty"+suffix);
+     if(imgs[i]){img.src=imgs[i];img.style.display="block";empty.style.display="none";}
+     else{img.removeAttribute("src");img.style.display="none";empty.style.display="flex";}
+   });
+ }
  document.getElementById("guideOverlay").classList.add("open");
 }
 document.getElementById("closeGuide").onclick=()=>document.getElementById("guideOverlay").classList.remove("open");document.getElementById("guideDone").onclick=()=>document.getElementById("guideOverlay").classList.remove("open");document.getElementById("guideOverlay").onclick=e=>{if(e.target.id==="guideOverlay")e.currentTarget.classList.remove("open")};
-function renderSession(){const done=session.filter(e=>e.done).length,pct=session.length?Math.round(done/session.length*100):0;document.getElementById("sessionProgress").textContent=pct+"%";document.getElementById("sessionBar").style.width=pct+"%";document.getElementById("exerciseList").innerHTML=session.length?session.map((e,i)=>`<div class="exercise"><div class="between"><div style="flex:1"><h3 style="display:inline">${i+1}. ${esc(e.name)}</h3><button class="guidebtn" data-guide="${i}">☷ Cómo se hace</button></div><input class="check" type="checkbox" data-done="${i}" ${e.done?"checked":""} aria-label="Completado"></div><div class="fields"><label>Series<input type="number" min="1" data-field="sets" data-i="${i}" value="${e.sets}"></label><label>Repeticiones<input type="number" min="1" data-field="reps" data-i="${i}" value="${e.reps}"></label><label>Peso (kg)<input type="number" min="0" step=".5" data-field="weight" data-i="${i}" value="${e.weight}" placeholder="—"></label></div></div>`).join(""):`<div class="empty">Añade tu primer ejercicio.</div>`;
+function renderSession(){const done=session.filter(e=>e.done).length,pct=session.length?Math.round(done/session.length*100):0;document.getElementById("sessionProgress").textContent=pct+"%";document.getElementById("sessionBar").style.width=pct+"%";document.getElementById("exerciseList").innerHTML=session.length?session.map((e,i)=>`<div class="exercise"><div class="between"><div style="flex:1"><h3 style="display:inline">${i+1}. ${esc(e.name)}</h3><button class="guidebtn" data-guide="${i}">☷ Cómo se hace</button></div><input class="check" type="checkbox" data-done="${i}" ${e.done?"checked":""} aria-label="Completado"></div><img class="exercise-pair" src="assets/exercises/${currentDay.id}_${String(i+1).padStart(2,"0")}.jpg" alt="Posición inicial y final de ${esc(e.name)}" loading="lazy"><div class="fields"><label>Series<input type="number" min="1" data-field="sets" data-i="${i}" value="${e.sets}"></label><label>Repeticiones<input type="number" min="1" data-field="reps" data-i="${i}" value="${e.reps}"></label><label>Peso (kg)<input type="number" min="0" step=".5" data-field="weight" data-i="${i}" value="${e.weight}" placeholder="—"></label></div></div>`).join(""):`<div class="empty">Añade tu primer ejercicio.</div>`;
 document.querySelectorAll("[data-guide]").forEach(x=>x.onclick=()=>openGuide(session[+x.dataset.guide].name));document.querySelectorAll("[data-done]").forEach(x=>x.onchange=()=>{session[+x.dataset.done].done=x.checked;renderSession()});document.querySelectorAll("[data-field]").forEach(x=>x.onchange=()=>session[+x.dataset.i][x.dataset.field]=x.value)}
 document.getElementById("addExercise").onclick=()=>{let n=prompt("Nombre del ejercicio:");if(n&&n.trim()){session.push({name:n.trim(),sets:3,reps:12,weight:"",done:false});renderSession()}};
 document.getElementById("finishWorkout").onclick=()=>{if(!currentDay)return;data.logs.push({date:dateKey(),dayId:currentDay.id,dayName:currentDay.name+" · "+currentDay.focus,exercises:session});save();alert("¡Entrenamiento guardado! 💗");show("home")};
