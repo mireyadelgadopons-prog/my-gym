@@ -89,12 +89,15 @@ input[type=file]{font-size:12px;max-width:100%}.photo-slots{display:grid;grid-te
 const defaultDays=[
  {id:"mon",name:"Lunes",focus:"Piernas",icon:"🦵",exercises:["Prensa de piernas","Sentadilla","Extensión de cuádriceps","Curl femoral","Abductores"]},
  {id:"tue",name:"Martes",focus:"Espalda y bíceps",icon:"💪",exercises:["Jalón al pecho","Remo sentado","Remo unilateral","Curl de bíceps","Curl martillo"]},
- {id:"wed",name:"Miércoles",focus:"Glúteos",icon:"🍑",exercises:["Hip thrust","Peso muerto rumano","Patada de glúteo","Abducción de cadera","Puente de glúteos"]},
+ {id:"wed",name:"Miércoles",focus:"Glúteos",icon:"🍑",exercises:["Hip thrust","Peso muerto rumano","Patada de glúteo","Abducción de cadera","Sentadilla búlgara"]},
  {id:"thu",name:"Jueves",focus:"Pecho y tríceps",icon:"🏋️",exercises:["Press de pecho","Aperturas","Press de hombros","Extensión de tríceps","Jalón de tríceps"]},
  {id:"fri",name:"Viernes",focus:"Cuerpo completo",icon:"✨",exercises:["Prensa de piernas","Jalón al pecho","Hip thrust","Press de pecho","Plancha"]}
 ];
 const KEY="mygym_v1";
 let data=load(), currentDay=null, session=[];
+// Actualiza el ejercicio del miércoles en instalaciones ya existentes.
+const wedRoutine=data.days?.find(d=>d.id==="wed");
+if(wedRoutine?.exercises){const i=wedRoutine.exercises.findIndex(n=>/puente de glúteos|puente de gluteos/i.test(n));if(i!==-1)wedRoutine.exercises[i]="Sentadilla búlgara";}
 function load(){try{return JSON.parse(localStorage.getItem(KEY))||{days:defaultDays,logs:[],weights:[],photos:[],measurements:[],userName:""}}catch(e){return {days:defaultDays,logs:[],weights:[],photos:[],measurements:[],userName:""}}}
 function save(){localStorage.setItem(KEY,JSON.stringify(data));queueCloudSync()}
 const PHOTO_DB="mygym_photos_v2", PHOTO_STORE="images";
@@ -138,7 +141,7 @@ const exerciseGuides={
 "Peso muerto rumano":{muscles:"Isquiotibiales y glúteos",steps:["Sujeta la barra o mancuernas delante de los muslos, con rodillas ligeramente flexionadas.","Lleva la cadera hacia atrás mientras bajas el peso pegado a las piernas.","Cuando notes tensión detrás del muslo, empuja la cadera hacia delante para subir."],tip:"La espalda se mantiene neutra; no hace falta bajar el peso hasta el suelo."},
 "Patada de glúteo":{muscles:"Glúteo mayor",steps:["Coloca el tobillo en el accesorio de polea o apoya manos y rodillas si haces la variante en cuadrupedia.","Lleva la pierna hacia atrás sin girar la pelvis ni arquear la espalda.","Vuelve lentamente sin dejar que el peso tire de ti."],tip:"Haz un recorrido cómodo y evita compensar con la zona lumbar."},
 "Abducción de cadera":{muscles:"Glúteo medio",steps:["Colócate de lado en la polea o tumbada de lado, con el tronco estable.","Eleva la pierna superior hacia fuera sin girar la punta del pie hacia arriba.","Baja despacio y repite; después cambia de lado."],tip:"No inclines el cuerpo para ganar recorrido."},
-"Puente de glúteos":{muscles:"Glúteos",steps:["Túmbate boca arriba con rodillas flexionadas y pies apoyados a la anchura de las caderas.","Aprieta glúteos y eleva la pelvis hasta alinear hombros, cadera y rodillas.","Haz una pausa breve arriba y baja despacio."],tip:"No arquees la espalda para subir más alto."},
+"Sentadilla búlgara":{muscles:"Glúteos y cuádriceps",steps:["Colócate de espaldas a un banco y apoya el empeine de un pie sobre él. Adelanta el otro pie lo suficiente para mantener el equilibrio.","Flexiona la rodilla delantera y baja la cadera de forma controlada, manteniendo el tronco estable.","Empuja con el pie delantero para volver a subir. Completa las repeticiones y cambia de pierna."],tip:"Mantén la rodilla delantera alineada con el pie y usa apoyo con una mano si necesitas equilibrio."},
 "Press de pecho":{muscles:"Pectoral, hombros y tríceps",steps:["Ajusta el asiento para que las asas queden aproximadamente a la altura del pecho.","Empuja hacia delante sin despegar la espalda del respaldo.","Vuelve despacio hasta notar un estiramiento cómodo, sin forzar el hombro."],tip:"Mantén los hombros lejos de las orejas y las muñecas alineadas."},
 "Aperturas":{muscles:"Pectoral",steps:["En máquina, ajusta el asiento para que los codos queden a la altura del pecho.","Acerca los brazos delante del cuerpo con una ligera flexión de codos.","Abre lentamente hasta un estiramiento cómodo."],tip:"No lleves los codos demasiado atrás ni uses un peso excesivo."},
 "Press de hombros":{muscles:"Deltoides y tríceps",steps:["Ajusta el asiento para empezar con las manos a la altura de los hombros.","Empuja hacia arriba sin arquear la zona lumbar.","Baja controladamente hasta la posición inicial."],tip:"Mantén el abdomen activo y evita bloquear los codos con fuerza."},
@@ -180,10 +183,11 @@ function openGuide(name,dayId,index){
  else if(/remo sentado/.test(n)) photoKey="tue_2";
  else if(/remo unilateral/.test(n)) photoKey="tue_3";
  else if(/curl de bíceps|curl de biceps/.test(n)) photoKey="tue_4";
- else if(/curl martillo/.test(n)) photoKey=null;
+ else if(/curl martillo/.test(n)) photoKey="tue_5";
  else if(/hip thrust/.test(n)) photoKey=(dayId==="mon"?"mon_5":"wed_1");
  else if(/peso muerto rumano/.test(n)) photoKey=(dayId==="fri"?"fri_2":"wed_5");
  else if(/patada de glúteo|patada de gluteo/.test(n)) photoKey="wed_2";
+ else if(/sentadilla búlgara|sentadilla bulgara/.test(n)) photoKey="wed_4";
  else if(/puente de glúteos|puente de gluteos/.test(n)) photoKey=null;
  else if(/press de pecho|press banca/.test(n)) photoKey="thu_1";
  else if(/aperturas/.test(n)) photoKey="thu_3";
