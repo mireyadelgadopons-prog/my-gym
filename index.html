@@ -248,15 +248,18 @@ function renderCalendar(){const month=selectedDate.getMonth(),year=selectedDate.
 function exerciseMatchesFocus(ex,focus){const t=(String(ex.muscle_group||'')+' '+String(ex.name||'')).normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase();const rules={'Espalda y bíceps':/espalda|dorsal|remo|jalon|pullover|biceps|curl/,'Piernas':/pierna|cuadriceps|femoral|isquiotibial|aductor|abductor|gemelo|sentadilla|prensa|zancada/,'Glúteos':/glute|hip thrust|patada|puente|abduccion/,'Pecho y tríceps':/pecho|pectoral|triceps|apertura|press/};return (rules[focus]||/.*/).test(t)}
 
 function adviceGroupFor(ex){
- const text=(String(ex.muscle_group||'')+' '+String(ex.primary_muscle||'')+' '+String(ex.name||'')).normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase();
- if(/biceps|braquial|curl/.test(text))return 'bíceps';
- if(/triceps/.test(text))return 'tríceps';
- if(/pectoral|pecho|apertura/.test(text))return 'pecho';
- if(/espalda|dorsal|remo|jalon|pullover|romboide/.test(text))return 'espalda';
- if(/isquiotibial|femoral|curl femoral/.test(text))return 'isquiotibiales';
- if(/cuadriceps|sentadilla|prensa|extension de cuadriceps/.test(text))return 'cuádriceps';
- if(/abductor|aductor/.test(text))return 'abductores/aductores';
- if(/glute|hip thrust|patada|puente/.test(text))return 'glúteos';
+ const norm=v=>String(v||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase();
+ const group=norm(ex.muscle_group),primary=norm(ex.primary_muscle),name=norm(ex.name);
+ // Primero se comprueba el grupo y el músculo principal: "curl femoral"
+ // nunca debe clasificarse como bíceps por contener la palabra "curl".
+ if(group.includes('isquiotibial')||group.includes('femoral')||primary.includes('isquiotibial')||primary.includes('femoral')||name.includes('curl femoral'))return 'isquiotibiales';
+ if(group.includes('biceps')||primary.includes('biceps')||primary.includes('braquial')||name.includes('curl alterno')||name.includes('curl de biceps')||name.includes('curl martillo'))return 'bíceps';
+ if(group.includes('triceps')||primary.includes('triceps'))return 'tríceps';
+ if(group.includes('pecho')||primary.includes('pectoral'))return 'pecho';
+ if(group.includes('espalda')||primary.includes('dorsal')||/remo|jalon|pullover/.test(name))return 'espalda';
+ if(group.includes('cuadriceps')||primary.includes('cuadriceps')||/sentadilla|prensa|extension de cuadriceps|step-up|zancada/.test(name))return 'cuádriceps';
+ if(group.includes('aductor')||group.includes('abductor')||/aductor|abductor/.test(name))return 'abductores/aductores';
+ if(group.includes('glute')||primary.includes('glute')||/hip thrust|patada de gluteo|puente de gluteos|frog pumps/.test(name))return 'glúteos';
  return '';
 }
 function routineAdviceConfig(focus){
