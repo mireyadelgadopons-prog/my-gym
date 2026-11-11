@@ -146,6 +146,13 @@ nav{background:#202228f7;border-top:1px solid #393c45;box-shadow:0 -8px 25px #20
 .routine-advice .advice-item{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:8px 10px;border-radius:10px;background:#fff;border:1px solid #f0e4e8;font-size:12px}
 .routine-advice .advice-item button{border:0;border-radius:20px;padding:6px 10px;background:var(--pink);color:#fff;font-weight:800;white-space:nowrap}
 .routine-advice .advice-note{font-size:11px;color:var(--muted);margin-top:10px}
+
+/* Corrección de navegación inferior para Safari/iOS */
+html{min-height:100%;}body{min-height:100vh;min-height:100dvh;}
+.app{min-height:100vh;min-height:100dvh;padding-bottom:calc(96px + env(safe-area-inset-bottom));}
+nav{position:fixed!important;left:0!important;right:0!important;bottom:0!important;top:auto!important;width:100%;z-index:1000;box-sizing:border-box;padding-top:8px;padding-bottom:calc(8px + env(safe-area-inset-bottom));transform:translate3d(0,0,0);-webkit-transform:translate3d(0,0,0);}
+.navinner{width:100%;}
+@supports (-webkit-touch-callout:none){nav{ -webkit-backface-visibility:hidden;backface-visibility:hidden;}}
 </style>
 </head><body><div class="app">
 <header><div class="top"><div><div class="brand">my <span>gym.</span></div><div class="sub">TU DIARIO DE ENTRENAMIENTO</div></div><div class="date" id="today"></div></div></header>
