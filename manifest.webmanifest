@@ -3,15 +3,16 @@
   "short_name": "My Gym",
   "description": "Tu diario personal de entrenamiento",
   "start_url": "./",
+  "scope": "./",
   "display": "standalone",
   "background_color": "#fffafb",
-  "theme_color": "#f6dfe5",
+  "theme_color": "#202228",
   "icons": [
     {
-      "src": "icon.svg",
-      "sizes": "any",
-      "type": "image/svg+xml",
-      "purpose": "any maskable"
+      "src": "my-gym-icon.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
     }
   ]
 }
